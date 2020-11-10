@@ -17,40 +17,41 @@ if(!isset($_SESSION['zalogowany']))
     <meta http-equiv="X-UA-Compatible" content="IE = edge, chrome-1" />
     <title> E-Gymnator - Ćwiczenia </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
 </head>
 
 <body> 
     <div class="card">
         <div class="card-body">                                        
+
+        <table id="datatableid" class="table table-bordered table-dark display">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nazwa</th>
+                    <th scope="col">Część ciała</th>
+                    <th scope="col">Poziom trudności</th>
+                    <th scope="col">Typ ćwiczenia</th>
+                    <th scope="col">Typ obciążenia</th>
+                    <th scope="col">Edytuj</th>
+                    <th scope="col">Usuń</th>
+                </tr> 
+            </thead>
+            <tbody>
             <?php
                 require_once "connect.php";
                 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
                 $query = "SELECT * FROM exercises";
                 $query_run = mysqli_query($polaczenie, $query);
-            ?>
-        <table class="table table-striped table-dark">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nazwa</th>
-                <th scope="col">Część ciała</th>
-                <th scope="col">Poziom trudności</th>
-                <th scope="col">Typ ćwiczenia</th>
-                <th scope="col">Typ obciążenia</th>
-                <th scope="col">Edytuj</th>
-                </tr>
-            </thead>
-            <?php
+
                 if($query_run)
                 {
                     foreach($query_run as $row)
                     {
             ?>
-            <tbody>
                 <tr>
+              
                     <td> <?php echo $row['id_exercises']; ?></td>
                     <td> <?php echo $row['name']; ?></td>
                     <td> <?php echo $row['body_part']; ?></td>
@@ -60,9 +61,11 @@ if(!isset($_SESSION['zalogowany']))
                     <td> 
                         <button type="button" class="btn btn-success editbtn">Edytuj</button>
                     </td>
+                    <td> 
+                        <button type="button" class="btn btn-danger deletebtn">Usuń</button>
+                    </td>
                 </tr>
-            </tbody>
-            <?php
+                <?php
                     }
                     $polaczenie->close();
                 }
@@ -71,6 +74,8 @@ if(!isset($_SESSION['zalogowany']))
                     echo "No Record Found";
                 }
             ?>
+            </tbody>
+            
             </table>
         </div>
     </div>
@@ -307,9 +312,71 @@ if(!isset($_SESSION['zalogowany']))
         </div>
     </div>           
     <!-- ########################################################################################################################################################-->
+        <!-- ########################################################################################################################################################-->
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Usuń ćwiczenie</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="deletecode.php" method="POST">
+                    <div class="modal-body ">
+                        <input type="hidden" name="delete_id" id="delete_id"> 
+                        <h4>Na pewno chcesz usunąć to ćwiczenie?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                        <button type="submit" name="deletedata" class="btn btn-primary">Tak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>           
+    <!-- ########################################################################################################################################################-->
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('#datatableid').DataTable({
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Szukaj ćwiczenia",
+                    "processing":     "Przetwarzanie...",
+                    "lengthMenu":     "Pokaż _MENU_ pozycji",
+                    "info":           "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+                    "infoEmpty":      "Pozycji 0 z 0 dostępnych",
+                    "infoFiltered":   "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+                    "infoPostFix":    "",
+                    "loadingRecords": "Wczytywanie...",
+                    "zeroRecords":    "Nie znaleziono pasujących pozycji",
+                    "emptyTable":     "Brak danych",
+                    "paginate": {
+                        "first":      "Pierwsza",
+                        "previous":   "Poprzednia",
+                        "next":       "Następna",
+                        "last":       "Ostatnia"
+                    },
+                    "aria": {
+                        "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+                        "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+                    }
+                }
+            });
+        });
+    </script>
     <script>
         $(document).ready(function (){
             $('.editbtn').on('click', function(){
@@ -329,6 +396,24 @@ if(!isset($_SESSION['zalogowany']))
                 $('#difficulty').val(data[3]);
                 $('#exercise_type').val(data[4]);
                 $('#exercise_weights').val(data[5]);
+            });
+        });
+    </script>
+
+<script>
+        $(document).ready(function (){
+            $('.deletebtn').on('click', function(){
+                $('#deletemodal').modal('show');
+
+                $tr = $(this).closest('tr');
+
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#delete_id').val(data[0]);
             });
         });
     </script>
