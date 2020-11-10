@@ -20,8 +20,7 @@ if(!isset($_SESSION['zalogowany']))
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
 </head>
 
-<body> 
-Test gita
+<body>
     <div class="card">
         <div class="card-body">                                        
 
@@ -400,8 +399,7 @@ Test gita
             });
         });
     </script>
-
-<script>
+    <script>
         $(document).ready(function (){
             $('.deletebtn').on('click', function(){
                 $('#deletemodal').modal('show');
