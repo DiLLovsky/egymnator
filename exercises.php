@@ -21,6 +21,7 @@ if(!isset($_SESSION['zalogowany']))
 </head>
 
 <body> 
+Test gita
     <div class="card">
         <div class="card-body">                                        
 
