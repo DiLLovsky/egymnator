@@ -1,0 +1,98 @@
+if (isset($_POST['body_part']))
+    {
+        //Udana walidacja? Załóżmy, że tak
+        $wszystko_OK = true;
+
+        //Sprawdzenie poprwaności Nazwy ćwiczenia
+        $exercise_name = $_POST['exercise_name'];
+
+        //sprawdzenie długości nazwy ćwiczenia
+        if ((strlen($exercise_name)<1) || (strlen($exercise_name)>255))
+        {
+            $wszystko_OK=false;
+            $_SESSION['e_exercise_name']="Nazwa ćwiczenia musi posiadać od 1 do 255 znaków";
+        }
+
+        //sprawdz poprawność body_part
+        $body_part = $_POST['body_part'];
+
+        //Sprawdź poprawność difficulty
+        $difficulty = $_POST['difficulty'];
+
+        require_once "connect.php";
+        mysqli_report(MYSQLI_REPORT_STRICT);
+        try
+        {
+            $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+            if($polaczenie->connect_errno!=0)
+                {
+                    throw new Exception(mysqli_connect_errno());
+                }
+                else
+                {
+                    if($wszystko_OK==true)
+                    {
+                        //Zaliczone, dodajemy użytkownika do bazy danych
+                        if($polaczenie->query("INSERT INTO `exercises` (`id_exercises`, `name`, `body_part`, `difficulty`) VALUES (NULL, '$exercise_name','$body_part', '$difficulty')"))
+                        {
+                            $_SESSION['dodanocwiczenie']=true;
+                            header('Location: add_new_exercise.php');
+                        }
+                        else
+                        {
+                            throw new Exception($polaczenie->error);
+                        }
+                    }
+
+
+                    $polaczenie->close();
+                }
+        }
+        catch(Exception $e)
+        {
+            echo '<span style="color:red">Błąd serwera! Przepraszamy za niedogoności i prosimy o dodanie nowego ćwiczenia w innym treminie!</span>';
+            echo '<br /> Informacja developerska: '.$e;
+        }  
+    }
+
+
+<form method="POST">
+
+        Nazwa ćwiczenia: <br /> <input type="text" name="exercise_name" /> 
+        
+        <?php
+        require_once "connect.php";
+
+            if(isset($_SESSION['e_exercise_name']))
+            {
+                echo '<div class="error">'.$_SESSION['e_exercise_name'].'</div>';
+                unset($_SESSION['e_exercise_name']);
+            }
+
+        ?>
+        <br /><br />
+
+        Partia ciała: <br />
+        <select name="body_part">
+            <?php
+                while($rows = $resultBody_Part->fetch_assoc())
+                {
+                    $body_part = $rows['body_part'];
+                    echo "<option value = '$body_part'>$body_part</option>";
+                }
+            ?>
+        </select> 
+        <br /><br />
+        Poziom trudności: <br />
+        <select name="difficulty">
+            <?php
+                while($rows = $resultDifficulty->fetch_assoc())
+                {
+                    $difficulty = $rows['difficulty'];
+                    echo "<option value = '$difficulty'>$difficulty</option>";
+                }
+            ?>
+        </select> <br /><br />
+        <input type="submit" value="Dodaj nowe ćwiczenie" /> <br /><br />
+        
+    </form>
