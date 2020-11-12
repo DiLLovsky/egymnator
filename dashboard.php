@@ -2,8 +2,7 @@
 
 session_start();
 
-if(!isset($_SESSION['zalogowany']))
-{
+if (!isset($_SESSION['zalogowany'])) {
     header('Location: index.php');
     exit();
 }
@@ -12,6 +11,7 @@ if(!isset($_SESSION['zalogowany']))
 
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE = edge, chrome-1" />
@@ -20,15 +20,15 @@ if(!isset($_SESSION['zalogowany']))
 
 <body>
 
-<?php
+    <?php
 
-    echo "<p>Witaj ".$_SESSION['login'].'![<a href="logout.php">Wyloguj się!</a>]</p>';
+    echo "<p>Witaj " . $_SESSION['login'] . '![<a href="logout.php">Wyloguj się!</a>]</p>';
 
-    echo "<p>Trener ".$_SESSION['id_users'].'![<a href="exercises.php">Wszystkie ćwiczenia</a>]</p>';
+    echo "<p>Trener " . $_SESSION['id_users'] . '![<a href="exercises.php">Wszystkie ćwiczenia</a>]</p>';
 
     echo '<p>Edytuj swój profil: [<a href="profile.php">Profil</a>]</p>';
 
-    echo "<p>id_user_status: ".$_SESSION['id_users_status']."</p>";
+    echo "<p>id_user_status: " . $_SESSION['id_users_status'] . "</p>";
 
     $dataczas = new DateTime();
 
@@ -36,7 +36,7 @@ if(!isset($_SESSION['zalogowany']))
 
 
 
-?>
+    ?>
 
 </body>
 
