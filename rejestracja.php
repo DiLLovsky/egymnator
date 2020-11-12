@@ -113,7 +113,7 @@
                     if($wszystko_OK==true)
                     {
                         //Zaliczone, dodajemy użytkownika do bazy danych
-                        if($polaczenie->query("INSERT INTO users VALUES (NULL, '$login','$haslo_hash', '$email')"))
+                        if($polaczenie->query("INSERT INTO users (`id_users`, `login`, `pass`, `email`, `id_users_status`) VALUES (NULL, '$login','$haslo_hash', '$email', '3')"))
                         {
                             $_SESSION['udanarejestracja']=true;
                             header('Location: witamy.php');

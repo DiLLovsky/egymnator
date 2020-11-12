@@ -24,7 +24,11 @@ if(!isset($_SESSION['zalogowany']))
 
     echo "<p>Witaj ".$_SESSION['login'].'![<a href="logout.php">Wyloguj się!</a>]</p>';
 
-    echo "<p>Trener ".$_SESSION['login'].'![<a href="exercises.php">Wszystkie ćwiczenia</a>]</p>';
+    echo "<p>Trener ".$_SESSION['id_users'].'![<a href="exercises.php">Wszystkie ćwiczenia</a>]</p>';
+
+    echo '<p>Edytuj swój profil: [<a href="profile.php">Profil</a>]</p>';
+
+    echo "<p>id_user_status: ".$_SESSION['id_users_status']."</p>";
 
     $dataczas = new DateTime();
 

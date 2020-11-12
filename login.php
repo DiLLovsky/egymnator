@@ -34,8 +34,9 @@
                 if(password_verify($haslo, $wiersz['pass']))
                 {
                     $_SESSION['zalogowany'] = true;
-                    $_SESSION['id'] = $wiersz['id'];
+                    $_SESSION['id_users'] = $wiersz['id_users'];
                     $_SESSION['login'] = $wiersz['login'];
+                    $_SESSION['id_users_status'] = $wiersz['id_users_status'];
 
                     unset($_SESSION['blad']);
                     $rezultat->close();
