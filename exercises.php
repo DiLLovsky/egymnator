@@ -21,6 +21,9 @@ if (!isset($_SESSION['zalogowany'])) {
 </head>
 
 <body>
+    <?php
+    echo "<p>id_users_status: " . $_SESSION['id_users_status'] . '![<a href="dashboard.php">Wróc na dashboard</a>]</p>';
+    ?>
 
     <div class="card">
         <div class="card-body">

@@ -32,6 +32,12 @@ if ($polaczenie->connect_errno != 0) {
                 $_SESSION['zalogowany'] = true;
                 $_SESSION['id_users'] = $wiersz['id_users'];
                 $_SESSION['login'] = $wiersz['login'];
+                $_SESSION['email'] = $wiersz['email'];
+                $_SESSION['name'] = $wiersz['name'];
+                $_SESSION['surname'] = $wiersz['surname'];
+                $_SESSION['age'] = $wiersz['age'];
+                $_SESSION['height'] = $wiersz['height'];
+                $_SESSION['weight'] = $wiersz['weight'];
                 $_SESSION['id_users_status'] = $wiersz['id_users_status'];
 
                 unset($_SESSION['blad']);

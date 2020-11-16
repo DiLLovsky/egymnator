@@ -141,12 +141,21 @@ if (isset($_POST['login'])) {
 
     echo "<p>id_users: " . $_SESSION['id_users'] . '![<a href="logout.php">Wyloguj się!</a>]</p>';
 
-    echo "<p>id_users_status: " . $_SESSION['id_users_status'] . '![<a href="logout.php">Wyloguj się!</a>]</p>';
+    echo "<p>id_users_status: " . $_SESSION['id_users_status'] . '![<a href="dashboard.php">Wróc na dashboard</a>]</p>';
     ?>
 
     <form method="POST">
-
-        Login: <br /> <input type="text" value="siema123" name="login" /> <br />
+        Login: <br /> <input type="text" value="<?php
+                                                require_once "connect.php";
+                                                $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+                                                $id_users = $_SESSION['id_users'];
+                                                $sql = "SELECT * FROM 'users' WHERE id_users = '$id_users'";
+                                                $query_run = mysqli_query($polaczenie, $sql);
+                                                if ($query_run) {
+                                                    echo ['login'];
+                                                } else {
+                                                    echo "No Record Found";
+                                                } ?>" name="login" /> <br />
         <?php
 
         if (isset($_SESSION['e_login'])) {
@@ -155,7 +164,7 @@ if (isset($_POST['login'])) {
         }
 
         ?><br />
-        E-Mail: <br /> <input type="text" value="siema1@gmail.com" name="email" /> <br />
+        E-Mail: <br /> <input type="text" value="<?php echo $_SESSION['email']; ?>" name="email" /> <br />
         <?php
 
         if (isset($_SESSION['e_email'])) {
@@ -164,7 +173,7 @@ if (isset($_POST['login'])) {
         }
 
         ?><br />
-        Imię: <br /> <input type="text" value="siemaname" name="name" /> <br />
+        Imię: <br /> <input type="text" value="<?php echo $_SESSION['name']; ?>" name="name" /> <br />
         <?php
 
         if (isset($_SESSION['e_name'])) {
@@ -173,7 +182,7 @@ if (isset($_POST['login'])) {
         }
 
         ?><br />
-        Nazwisko: <br /> <input type="text" value="siemasurname" name="surname" /> <br />
+        Nazwisko: <br /> <input type="text" value="<?php echo $_SESSION['surname']; ?>" name="surname" /> <br />
         <?php
 
         if (isset($_SESSION['e_surname'])) {
@@ -182,7 +191,7 @@ if (isset($_POST['login'])) {
         }
 
         ?><br />
-        Wiek: <br /> <input type="text" value="123" name="age" /> <br />
+        Wiek: <br /> <input type="text" value="<?php echo $_SESSION['age']; ?>" name="age" /> <br />
         <?php
 
         if (isset($_SESSION['e_age'])) {
@@ -191,7 +200,7 @@ if (isset($_POST['login'])) {
         }
 
         ?><br />
-        Wzrost: <br /> <input type="text" value="123" name="height" /> <br />
+        Wzrost: <br /> <input type="text" value="<?php echo $_SESSION['height']; ?>" name="height" /> <br />
         <?php
 
         if (isset($_SESSION['e_height'])) {
@@ -200,7 +209,7 @@ if (isset($_POST['login'])) {
         }
 
         ?><br />
-        Waga: <br /> <input type="text" value="123" name="weight" /> <br />
+        Waga: <br /> <input type="text" value="<?php echo $_SESSION['weight']; ?>" name="weight" /> <br />
         <?php
 
         if (isset($_SESSION['e_weight'])) {
