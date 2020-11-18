@@ -1,21 +1,22 @@
 body {
-  margin: 0;
-  padding: 0;
   font-family: sans-serif;
-  background-image: linear-gradient(to right, #945b00, #410873);
+  background-image: linear-gradient(to right, #fdb827, #410873);
+  color: grey;
 }
 
 .box {
-  width: 500px;
+  width: 400px;
   padding: 40px;
   position: absolute;
   top: 50%;
   left: 50%;
-  background: #191919;
+  background: #020202;
   text-align: center;
-  transition: 0.25s;
-  margin-top: 100px;
+  transition: 0.5s;
   border-radius: 100px;
+  transform: translate(-50%, -50%);
+  -webkit-box-shadow: 0px 0px 50px 10px #000000;
+  box-shadow: 0px 0px 50px 10px #000000;
 }
 
 .box input[type="text"],
@@ -65,22 +66,30 @@ body {
   background: #cfa900;
 }
 
-.checkmark {
-  height: 20px;
-  width: 20px;
-}
 .label {
-  color: grey;
-  padding: 0px;
-  font-size: large;
+  display: flex;
+  margin-left: 25%;
 }
-
 .g-recaptcha {
   margin: 10px;
   margin-left: 60px;
 }
-
+.checkmark {
+  height: 15px;
+  width: 15px;
+}
 .reg {
-  float: right;
-  margin-left: 10px;
+  display: flex;
+  color: gray;
+  font-size: larger;
+  margin-left: 3%;
+}
+
+p {
+  color: gray;
+}
+
+a {
+  font-size: large;
+  font-weight: 500;
 }

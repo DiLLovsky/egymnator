@@ -1,8 +1,9 @@
 <?php
 
 session_start();
+$id_users_status = $_SESSION['id_users_status'];
 
-if (!isset($_SESSION['zalogowany'])) {
+if (!isset($_SESSION['zalogowany']) && $id_user_status == 2) {
     header('Location: index.php');
     exit();
 }
@@ -23,6 +24,7 @@ if (!isset($_SESSION['zalogowany'])) {
 <body>
     <?php
     echo "<p>id_users_status: " . $_SESSION['id_users_status'] . '![<a href="dashboard.php">Wróc na dashboard</a>]</p>';
+    echo "<p>id_users_status: " . $id_users_status . '![<a href="dashboard.php">Wróc na dashboard</a>]</p>';
     ?>
 
     <div class="card">
