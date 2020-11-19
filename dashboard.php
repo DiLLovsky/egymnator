@@ -30,6 +30,8 @@ if (!isset($_SESSION['zalogowany'])) {
 
     echo "<p>id_user_status: " . $_SESSION['id_users_status'] . "</p>";
 
+    echo '<p>Admin panel: [<a href="adminpanel.php">Profil</a>]</p>';
+
     $dataczas = new DateTime();
 
     echo $dataczas->format('Y-m-d H:i:s');
