@@ -5,8 +5,6 @@ $db = mysqli_select_db($polaczenie, 'egymnator');
 if (isset($_POST['deletedata'])) {
     $id = $_POST['delete_id'];
 
-    $id = $_POST['delete_id'];
-
     $query = "DELETE FROM exercises WHERE id_exercises='$id'";
     $query_run = mysqli_query($polaczenie, $query);
 
