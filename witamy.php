@@ -32,6 +32,7 @@ if (isset($_SESSION['e_bot'])) unset($_SESSION['e_bot']);
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>E-Gymnator</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
