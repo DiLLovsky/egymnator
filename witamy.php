@@ -36,11 +36,12 @@ if (isset($_SESSION['e_bot'])) unset($_SESSION['e_bot']);
 </head>
 
 <body>
+	<div class="box">
 
-	Dziękujemy za rejestrację w serwisie! Możesz już zalogować się na swoje konto!<br /><br />
+		Dziękujemy za rejestrację w serwisie! Możesz już zalogować się na swoje konto!<br /><br />
 
-	<a href="index.php">Zaloguj się na swoje konto!</a>
-	<br /><br />
+		<a href="index.php">Zaloguj się na swoje konto!</a>
+	</div>
 
 </body>
 
