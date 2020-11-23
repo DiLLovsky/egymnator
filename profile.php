@@ -102,6 +102,14 @@ if (isset($_POST['login'])) {
                 //Aktuliazacja danych użytkownika.
                 if ($polaczenie->query("UPDATE users SET login = '$login', email = '$email', name = '$name', surname = '$surname', age = '$age', height = '$height', weight = '$weight' WHERE id_users = '$id_users'")) {
                     $_SESSION['udanaedycjaprofilu'] = true;
+                    $_SESSION['login'] = $_POST['login'];
+                    $_SESSION['email'] = $_POST['email'];
+                    $_SESSION['name'] = $_POST['name'];
+                    $_SESSION['surname'] = $_POST['surname'];
+                    $_SESSION['age'] = $_POST['age'];
+                    $_SESSION['height'] = $_POST['height'];
+                    $_SESSION['weight'] = $_POST['weight'];
+
                     header('Location: profile.php');
                 } else {
                     throw new Exception($polaczenie->error);
@@ -145,17 +153,7 @@ if (isset($_POST['login'])) {
     ?>
 
     <form method="POST">
-        Login: <br /> <input type="text" value="<?php
-                                                require_once "connect.php";
-                                                $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-                                                $id_users = $_SESSION['id_users'];
-                                                $sql = "SELECT * FROM 'users' WHERE id_users = '$id_users'";
-                                                $query_run = mysqli_query($polaczenie, $sql);
-                                                if ($query_run) {
-                                                    echo ['login'];
-                                                } else {
-                                                    echo "No Record Found";
-                                                } ?>" name="login" /> <br />
+        Login: <br /> <input type="text" value="<?php echo $_SESSION['login']; ?>" name="login" /> <br />
         <?php
 
         if (isset($_SESSION['e_login'])) {
