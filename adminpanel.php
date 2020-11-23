@@ -7,7 +7,12 @@ if (!isset($_SESSION['zalogowany'])) {
     exit();
 }
 
+$asd = $_SESSION['id_users_status'];
+if ($asd == '3' || $asd == '2') {
+    header('Location: index.php');
+}
 ?>
+
 <!DOCTYPE HTML>
 <html lang="pl">
 
