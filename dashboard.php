@@ -14,6 +14,18 @@ if ($asd == '1') {
 
 ?>
 
+<?php
+include("connect.php");
+$id = $_SESSION['id_users'];
+$sql = "SELECT avatar FROM users WHERE id_users = '$id'";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_array($result);
+
+$image = $row['avatar'];
+$image_src = "upload/" . $image;
+
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -43,12 +55,13 @@ if ($asd == '1') {
             <h3>E-<span>Gymnator</span></h3>
         </div>
         <div class="right_area">
-            <a href="logout.php" class="logout_btn">Wyloguj się</a></div>
+            <a href="logout.php" class="logout_btn">Wyloguj się</a>
+        </div>
     </header>
 
     <div class="mobile_nav">
         <div class="nav_bar">
-            <img src="halsey.jpg" class="mobile_profile_image" alt="">
+            <img src='<?php echo $image_src;  ?>' class="mobile_profile_image" alt="">
             <i class="fa fa-bars nav_btn"></i>
         </div>
         <div class="mobile_nav_items">
@@ -63,7 +76,7 @@ if ($asd == '1') {
 
     <div class="sidebar">
         <div class="profile_info">
-            <img src="halsey.jpg" class="profile_image" alt="">
+            <img src='<?php echo $image_src;  ?>' class="profile_image" alt="">
             <h4><?php echo $_SESSION['login'] ?></h4>
         </div>
         <a href="#"><i class="fas fa-home"></i><span>Dashboard</span></a>
