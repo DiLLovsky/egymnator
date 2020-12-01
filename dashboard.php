@@ -69,7 +69,7 @@ $image_src = "upload/" . $image;
             <a href="#"><i class="fas fa-desktop"></i><span>xxx</span></a>
             <a href="#"><i class="fas fa-home"></i><span>xxx</span></a>
             <a href="#"><i class="fas fa-home"></i><span>xxx</span></a>
-            <a href="#"><i class="fas fa-weight"></i><span>Oblicz BMI</span></a>
+            <a href="#"><i class="fas fa-weight"></i><span>Oblicz BMI i BMR</span></a>
             <a href="profile.php"><i class="far fa-user"></i><span>Edytuj profil</span></a>
         </div>
     </div>
@@ -83,7 +83,7 @@ $image_src = "upload/" . $image;
         <a href="#"><i class="fas fa-desktop"></i><span>xxx</span></a>
         <a href="#"><i class="fas fa-home"></i><span>xxx</span></a>
         <a href="#"><i class="fas fa-home"></i><span>xxx</span></a>
-        <a href="#"><i class="fas fa-weight"></i><span>Oblicz BMI</span></a>
+        <a href="bmi.php"><i class="fas fa-weight"></i><span>Oblicz BMI i BMR</span></a>
         <a href="profile.php"><i class="far fa-user"></i><span>Edytuj profil</span></a>
     </div>
 
