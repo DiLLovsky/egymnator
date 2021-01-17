@@ -143,116 +143,116 @@ if (isset($_POST['login'])) {
     </style>
 </head>
 
-<body>
+<?php
+echo "<p>Witaj " . $_SESSION['login'] . '![<a href="logout.php">Wyloguj się!</a>]</p>';
+
+echo "<p>id_users: " . $_SESSION['id_users'] . '![<a href="logout.php">Wyloguj się!</a>]</p>';
+
+echo "<p>id_users_status: " . $_SESSION['id_users_status'] . '![<a href="dashboard.php">Wróc na dashboard</a>]</p>';
+?>
+
+<form method="POST">
+    Login: <br /> <input type="text" value="<?php echo $_SESSION['login']; ?>" name="login" /> <br />
     <?php
-    echo "<p>Witaj " . $_SESSION['login'] . '![<a href="logout.php">Wyloguj się!</a>]</p>';
 
-    echo "<p>id_users: " . $_SESSION['id_users'] . '![<a href="logout.php">Wyloguj się!</a>]</p>';
-
-    echo "<p>id_users_status: " . $_SESSION['id_users_status'] . '![<a href="dashboard.php">Wróc na dashboard</a>]</p>';
-    ?>
-
-    <form method="POST">
-        Login: <br /> <input type="text" value="<?php echo $_SESSION['login']; ?>" name="login" /> <br />
-        <?php
-
-        if (isset($_SESSION['e_login'])) {
-            echo '<div class="error">' . $_SESSION['e_login'] . '</div>';
-            unset($_SESSION['e_login']);
-        }
-
-        ?><br />
-        E-Mail: <br /> <input type="text" value="<?php echo $_SESSION['email']; ?>" name="email" /> <br />
-        <?php
-
-        if (isset($_SESSION['e_email'])) {
-            echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
-            unset($_SESSION['e_email']);
-        }
-
-        ?><br />
-        Imię: <br /> <input type="text" value="<?php echo $_SESSION['name']; ?>" name="name" /> <br />
-        <?php
-
-        if (isset($_SESSION['e_name'])) {
-            echo '<div class="error">' . $_SESSION['e_name'] . '</div>';
-            unset($_SESSION['e_name']);
-        }
-
-        ?><br />
-        Nazwisko: <br /> <input type="text" value="<?php echo $_SESSION['surname']; ?>" name="surname" /> <br />
-        <?php
-
-        if (isset($_SESSION['e_surname'])) {
-            echo '<div class="error">' . $_SESSION['e_surname'] . '</div>';
-            unset($_SESSION['e_surname']);
-        }
-
-        ?><br />
-        Wiek: <br /> <input type="text" value="<?php echo $_SESSION['age']; ?>" name="age" /> <br />
-        <?php
-
-        if (isset($_SESSION['e_age'])) {
-            echo '<div class="error">' . $_SESSION['e_age'] . '</div>';
-            unset($_SESSION['e_age']);
-        }
-
-        ?><br />
-        Wzrost: <br /> <input type="text" value="<?php echo $_SESSION['height']; ?>" name="height" /> <br />
-        <?php
-
-        if (isset($_SESSION['e_height'])) {
-            echo '<div class="error">' . $_SESSION['e_height'] . '</div>';
-            unset($_SESSION['e_height']);
-        }
-
-        ?><br />
-        Waga: <br /> <input type="text" value="<?php echo $_SESSION['weight']; ?>" name="weight" /> <br />
-        <?php
-
-        if (isset($_SESSION['e_weight'])) {
-            echo '<div class="error">' . $_SESSION['e_weight'] . '</div>';
-            unset($_SESSION['e_weight']);
-        }
-
-        ?><br />
-        <input type="submit" name="update" value="Akutalizuj" />
-
-
-    </form>
-    <?php
-    if (isset($_SESSION['blad'])) echo $_SESSION['blad'];
-    ?>
-    <br>
-
-    <?php
-    include("connect.php");
-
-    if (isset($_POST['but_upload'])) {
-
-        $name = $_FILES['file']['name'];
-        $target_dir = "upload/";
-        $target_file = $target_dir . basename($_FILES["file"]["name"]);
-
-        // Select file type
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-        // Valid file extensions
-        $extensions_arr = array("jpg", "jpeg", "png", "gif");
-
-        // Check extension
-        if (in_array($imageFileType, $extensions_arr)) {
-            $id = $_SESSION['id_users'];
-            // Insert record
-            $query = "UPDATE users SET avatar = '$name' WHERE id_users = '$id'";
-            mysqli_query($con, $query);
-
-            // Upload file
-            move_uploaded_file($_FILES['file']['tmp_name'], $target_dir . $name);
-        }
+    if (isset($_SESSION['e_login'])) {
+        echo '<div class="error">' . $_SESSION['e_login'] . '</div>';
+        unset($_SESSION['e_login']);
     }
-    ?>
 
+    ?><br />
+    E-Mail: <br /> <input type="text" value="<?php echo $_SESSION['email']; ?>" name="email" /> <br />
+    <?php
+
+    if (isset($_SESSION['e_email'])) {
+        echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
+        unset($_SESSION['e_email']);
+    }
+
+    ?><br />
+    Imię: <br /> <input type="text" value="<?php echo $_SESSION['name']; ?>" name="name" /> <br />
+    <?php
+
+    if (isset($_SESSION['e_name'])) {
+        echo '<div class="error">' . $_SESSION['e_name'] . '</div>';
+        unset($_SESSION['e_name']);
+    }
+
+    ?><br />
+    Nazwisko: <br /> <input type="text" value="<?php echo $_SESSION['surname']; ?>" name="surname" /> <br />
+    <?php
+
+    if (isset($_SESSION['e_surname'])) {
+        echo '<div class="error">' . $_SESSION['e_surname'] . '</div>';
+        unset($_SESSION['e_surname']);
+    }
+
+    ?><br />
+    Wiek: <br /> <input type="text" value="<?php echo $_SESSION['age']; ?>" name="age" /> <br />
+    <?php
+
+    if (isset($_SESSION['e_age'])) {
+        echo '<div class="error">' . $_SESSION['e_age'] . '</div>';
+        unset($_SESSION['e_age']);
+    }
+
+    ?><br />
+    Wzrost: <br /> <input type="text" value="<?php echo $_SESSION['height']; ?>" name="height" /> <br />
+    <?php
+
+    if (isset($_SESSION['e_height'])) {
+        echo '<div class="error">' . $_SESSION['e_height'] . '</div>';
+        unset($_SESSION['e_height']);
+    }
+
+    ?><br />
+    Waga: <br /> <input type="text" value="<?php echo $_SESSION['weight']; ?>" name="weight" /> <br />
+    <?php
+
+    if (isset($_SESSION['e_weight'])) {
+        echo '<div class="error">' . $_SESSION['e_weight'] . '</div>';
+        unset($_SESSION['e_weight']);
+    }
+
+    ?><br />
+    <input type="submit" name="update" value="Akutalizuj" />
+
+
+</form>
+<?php
+if (isset($_SESSION['blad'])) echo $_SESSION['blad'];
+?>
+<br>
+
+<?php
+include("connect.php");
+
+if (isset($_POST['but_upload'])) {
+
+    $name = $_FILES['file']['name'];
+    $target_dir = "upload/";
+    $target_file = $target_dir . basename($_FILES["file"]["name"]);
+
+    // Select file type
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // Valid file extensions
+    $extensions_arr = array("jpg", "jpeg", "png", "gif");
+
+    // Check extension
+    if (in_array($imageFileType, $extensions_arr)) {
+        $id = $_SESSION['id_users'];
+        // Insert record
+        $query = "UPDATE users SET avatar = '$name' WHERE id_users = '$id'";
+        mysqli_query($con, $query);
+
+        // Upload file
+        move_uploaded_file($_FILES['file']['tmp_name'], $target_dir . $name);
+    }
+}
+?>
+
+<body>
     <?php
     $id = $_SESSION['id_users'];
     $sql = "SELECT avatar FROM users WHERE id_users = '$id'";
@@ -270,8 +270,6 @@ if (isset($_POST['login'])) {
         <input type='file' name='file' />
         <input type='submit' value='Save name' name='but_upload'>
     </form>
-
-
 </body>
 
 </html>

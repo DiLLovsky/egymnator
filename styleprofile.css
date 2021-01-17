@@ -138,10 +138,10 @@ label #sidebar_btn:hover {
   margin-top: 60px;
   padding: 20px;
   margin-left: 250px;
-  background: url(background.png) no-repeat;
+  background: url(background.png);
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 110vh;
   transition: 0.5s;
 }
 
@@ -163,11 +163,19 @@ label #sidebar_btn:hover {
 
 .content .card p {
   background: #fff;
-  padding: 15px;
+  width: 46%;
+  float: left;
+  padding: 25px;
   margin-bottom: 10px;
+  margin-left: 10px;
   font-size: 18px;
-  opacity: 0.8;
+  opacity: 0.9;
   border-radius: 24px;
+}
+
+.content .card .info p {
+  width: 96%;
+  font-size: 22px;
 }
 
 @media screen and (max-width: 780px) {

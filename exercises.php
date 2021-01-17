@@ -26,14 +26,8 @@ if ($asd == '3') {
 </head>
 
 <body>
-    <?php
-    echo "<p>id_users_status: " . $_SESSION['id_users_status'] . '![<a href="dashboard.php">Wróc na dashboard</a>]</p>';
-    echo '[<a href="dashboard.php">Wróc na dashboard</a>]</p>';
-    ?>
-
     <div class="card">
         <div class="card-body">
-
             <table id="datatableid" class="table table-bordered table-dark display">
                 <thead>
                     <tr>
@@ -51,15 +45,12 @@ if ($asd == '3') {
                     <?php
                     require_once "connect.php";
                     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-
                     $query = "SELECT * FROM exercises";
                     $query_run = mysqli_query($polaczenie, $query);
-
                     if ($query_run) {
                         foreach ($query_run as $row) {
                     ?>
                             <tr>
-
                                 <td> <?php echo $row['id_exercises']; ?></td>
                                 <td> <?php echo $row['name']; ?></td>
                                 <td> <?php echo $row['body_part']; ?></td>
@@ -376,7 +367,7 @@ if ($asd == '3') {
     </script>
     <script>
         $(document).ready(function() {
-            $('.editbtn').on('click', function() {
+            $(document).on('click', '.editbtn', function(e) {
                 $('#editmodal').modal('show');
 
                 $tr = $(this).closest('tr');
@@ -398,7 +389,7 @@ if ($asd == '3') {
     </script>
     <script>
         $(document).ready(function() {
-            $('.deletebtn').on('click', function() {
+            $(document).on('click', '.deletebtn', function(e) {
                 $('#deletemodal').modal('show');
 
                 $tr = $(this).closest('tr');

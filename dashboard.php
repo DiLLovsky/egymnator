@@ -65,12 +65,13 @@ $image_src = "upload/" . $image;
             <i class="fa fa-bars nav_btn"></i>
         </div>
         <div class="mobile_nav_items">
-            <a href="#"><i class="fas fa-home"></i><span>Dashboard</span></a>
-            <a href="#"><i class="fas fa-desktop"></i><span>xxx</span></a>
-            <a href="#"><i class="fas fa-home"></i><span>xxx</span></a>
-            <a href="#"><i class="fas fa-home"></i><span>xxx</span></a>
-            <a href="#"><i class="fas fa-weight"></i><span>Oblicz BMI i BMR</span></a>
+            <a href="dashboard.php"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="createtraining.php"><i class="fas fa-desktop"></i><span>Stwórz plan</span></a>
+            <a href="exercises.php"><i class="fas fa-plus"></i><span>Dodaj ćwiczenia</span></a>
+            <a href="mytraining.php"><i class="fas fa-dumbbell"></i><span>Moje treningi</span></a>
+            <a href="bmi.php"><i class="fas fa-weight"></i><span>Oblicz BMI i BMR</span></a>
             <a href="profile.php"><i class="far fa-user"></i><span>Edytuj profil</span></a>
+            <a href="calendar.php"><i class="fas fa-calendar-alt"></i><span>Kalendarz</span></a>
         </div>
     </div>
 
@@ -79,12 +80,13 @@ $image_src = "upload/" . $image;
             <img src='<?php echo $image_src;  ?>' class="profile_image" alt="">
             <h4><?php echo $_SESSION['login'] ?></h4>
         </div>
-        <a href="#"><i class="fas fa-home"></i><span>Dashboard</span></a>
-        <a href="#"><i class="fas fa-desktop"></i><span>xxx</span></a>
-        <a href="#"><i class="fas fa-home"></i><span>xxx</span></a>
-        <a href="#"><i class="fas fa-home"></i><span>xxx</span></a>
+        <a href="dashboard.php"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <a href="createtraining.php"><i class="fas fa-desktop"></i><span>Stwórz plan</span></a>
+        <a href="exercises.php"><i class="fas fa-plus"></i><span>Dodaj ćwiczenia</span></a>
+        <a href="mytraining.php"><i class="fas fa-dumbbell"></i><span>Moje treningi</span></a>
         <a href="bmi.php"><i class="fas fa-weight"></i><span>Oblicz BMI i BMR</span></a>
         <a href="profile.php"><i class="far fa-user"></i><span>Edytuj profil</span></a>
+        <a href="calendar.php"><i class="fas fa-calendar-alt"></i><span>Kalendarz</span></a>
     </div>
 
     <div class="content">
@@ -99,11 +101,11 @@ $image_src = "upload/" . $image;
         </div>
         <div class="card">
             <?php
-            echo "<p>Witaj " . $_SESSION['login'] . '![<a href="logout.php">Wyloguj się!</a>]</p>';
             echo "<p>Ćwiczenia " . $_SESSION['id_users'] . '![<a href="exercises.php">Wszystkie ćwiczenia</a>]</p>';
             echo '<p>Edytuj swój profil: [<a href="profile.php">Profil</a>]</p>';
             $dataczas = new DateTime();
-            echo $dataczas->format('Y-m-d H:i:s');
+            echo '<p>' . $dataczas->format('Y-m-d') . '</p>';
+            echo '<p>' . date('Y-m-d') . '</p>';
             ?>
         </div>
     </div>

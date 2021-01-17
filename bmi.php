@@ -30,10 +30,9 @@ if ($asd == '1') {
             var bmi = weight / (height * height) * 10000;
             var userBMI = document.getElementById("bmi_index")
             userBMI.textContent = bmi.toFixed(2);
-
             if (bmi < 18.5) {
                 document.querySelector("p").innerHTML = "Twoje BMI wynosi: " + (Math.round(bmi * 100) / 100).toFixed(2) + "<br>" + " Niedowaga";
-            } else if ((bmi >= 21) && (bmi <= 29.9)) {
+            } else if ((bmi >= 18.5) && (bmi <= 29.9)) {
                 document.querySelector("p").innerHTML = "Twoje BMI wynosi: " + (Math.round(bmi * 100) / 100).toFixed(2) + "<br>" + " Pożądana masa ciała"
             } else if (bmi > 30) {
                 document.querySelector("p").innerHTML = "Twoje BMI wynosi: " + (Math.round(bmi * 100) / 100).toFixed(2) + "<br>" + " Otyłość"
@@ -68,10 +67,10 @@ if ($asd == '1') {
         <h1> KALKULATOR BMI</h1>
         <hr>
         <label>Wzrost</label>
-        <input type="text" maxlength="3" id="h" placeholder="METRY">
+        <input type="text" maxlength="3" id="h" placeholder="METRY" required>
         <br>
         <label>Waga</label>
-        <input type="text" maxlength="2" id="w" placeholder="KILOGRAMY">
+        <input type="text" maxlength="2" id="w" placeholder="KILOGRAMY" required>
         <br>
         <input type="button" value="Oblicz" onclick="bmi()">
         <p id="bmi_index"></p>
@@ -81,16 +80,16 @@ if ($asd == '1') {
         <h1>TWOJE ZAPOTRZEBOWANIE KALORYCZNE (BMR)</h1>
         <hr>
         <label>Wzrost</label>
-        <input type="text" maxlength="3" id="height" placeholder="METRY">
+        <input type="text" maxlength="3" id="height" placeholder="METRY" required>
         <br>
         <label>Waga</label>
-        <input type="text" maxlength="2" id="weight" placeholder="KILOGRAMY">
+        <input type="text" maxlength="2" id="weight" placeholder="KILOGRAMY" required>
         <br>
         <label>Wiek</label>
-        <input type="text" maxlength="2" id="age" placeholder="LATA">
+        <input type="text" maxlength="2" id="age" placeholder="LATA" required>
         <br>
         <label class="radiocont">Mężczyzna
-            <input type="radio" checked="checked" name="radio" id="gender_Male">
+            <input type="radio" checked="checked" name="radio" id="gender_Male" required>
             <span class="checkmark"></span>
         </label>
         <label class="radiocont">Kobieta
