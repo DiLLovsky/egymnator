@@ -8,10 +8,9 @@ header {
   z-index: 1;
   position: fixed;
   background: #22242a;
-  padding: 20px;
   width: calc(100% - 0%);
   top: 0;
-  height: 30px;
+  height: 70px;
 }
 
 .left_area h3 {
@@ -20,6 +19,7 @@ header {
   text-transform: uppercase;
   font-size: 22px;
   font-weight: 900;
+  margin-left: 20px;
 }
 
 .left_area span {
@@ -31,8 +31,8 @@ header {
   background: #cfa900;
   text-decoration: none;
   float: right;
-  margin-top: -35px;
-  margin-right: 60px;
+  margin-top: -30px;
+  margin-right: 40px;
   border-radius: 2px;
   font-size: 15px;
   font-weight: 600;
@@ -78,10 +78,11 @@ header {
 .sidebar .profile_info h4 {
   color: #ccc;
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 23px;
   text-transform: uppercase;
   font-size: 22px;
   font-weight: 900;
+  margin-top: 4px;
 }
 
 .sidebar a {
@@ -115,6 +116,7 @@ label #sidebar_btn {
   margin: 5px 0;
   transition: 0.5s;
   transition-property: color;
+  margin-top: 16px;
 }
 
 label #sidebar_btn:hover {
@@ -143,8 +145,6 @@ label #sidebar_btn:hover {
   background: #828282;
   background-position: center;
   background-size: cover;
-  height: 110vh;
-  transition: 0.5s;
 }
 
 #check:checked ~ .content {
@@ -193,7 +193,6 @@ label #sidebar_btn:hover {
     margin-left: 0;
     margin-top: 0;
     padding: 10px 20px;
-    transition: 0s;
   }
 
   #check:checked ~ .content {

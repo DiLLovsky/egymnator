@@ -98,7 +98,7 @@ if (isset($_POST['email'])) {
 
             if ($wszystko_OK == true) {
                 //Zaliczone, dodajemy użytkownika do bazy danych
-                if ($polaczenie->query("INSERT INTO users (`id_users`, `login`, `pass`, `email`, `id_users_status`) VALUES (NULL, '$login','$haslo_hash', '$email', '3')")) {
+                if ($polaczenie->query("INSERT INTO users (`id_users`, `login`, `pass`, `email`, `id_users_status`, `avatar`) VALUES (NULL, '$login','$haslo_hash', '$email', '3', 'default-avatar.png')")) {
                     $_SESSION['udanarejestracja'] = true;
                     header('Location: witamy.php');
                 } else {

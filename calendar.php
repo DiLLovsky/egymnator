@@ -1,11 +1,28 @@
 <?php
+session_start();
+if (!isset($_SESSION['zalogowany'])) {
+    header('Location: index.php');
+    exit();
+}
 
+$asd = $_SESSION['id_users_status'];
+if ($asd == '1') {
+    header('Location: adminpanel.php');
+}
+include("connect.php");
+$id = $_SESSION['id_users'];
+$sql = "SELECT avatar FROM users WHERE id_users = '$id'";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_array($result);
+
+$image = $row['avatar'];
+$image_src = "upload/" . $image;
 function build_calendar($month, $year)
 {
-    session_start();
-    $id_users = $_SESSION['id_users'];
+
+    $id = $_SESSION['id_users'];
     $mysqli = new mysqli('localhost', 'root', '', 'egymnator');
-    $stmt = $mysqli->prepare("SELECT * FROM history WHERE MONTH(date) = ? AND YEAR(date) = ? AND id_users = '$id_users'");
+    $stmt = $mysqli->prepare("SELECT * FROM history WHERE MONTH(date) = ? AND YEAR(date) = ? AND id_users = '$id'");
     $stmt->bind_param('ss', $month, $year);
     $trained = array();
     if ($stmt->execute()) {
@@ -14,8 +31,6 @@ function build_calendar($month, $year)
             while ($row = $result->fetch_assoc()) {
                 $trained[] = $row['date'];
             }
-
-            $stmt->close();
         }
     }
 
@@ -145,6 +160,12 @@ function build_calendar($month, $year)
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styleprofilecalendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <style>
         @media only screen and (max-width: 760px),
         (min-device-width: 802px) and (max-device-width: 1020px) {
@@ -259,7 +280,9 @@ function build_calendar($month, $year)
 </head>
 
 <body>
-    <div class="container">
+    <?php include 'menu1.php'; ?>
+
+    <div class="content">
         <div class="row">
             <div class="col-md-12">
                 <?php
@@ -275,8 +298,16 @@ function build_calendar($month, $year)
                 ?>
             </div>
         </div>
+
     </div>
 
 </body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.nav_btn').click(function() {
+            $('.mobile_nav_items').toggleClass('active');
+        });
+    });
+</script>
 
 </html>
