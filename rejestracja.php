@@ -10,9 +10,9 @@ if (isset($_POST['email'])) {
     $login = $_POST['login'];
 
     //sprawdzenie długości loginu
-    if ((strlen($login) < 3) || (strlen($login) > 20)) {
+    if ((strlen($login) < 3) || (strlen($login) > 15)) {
         $wszystko_OK = false;
-        $_SESSION['e_login'] = "Login musi posiadać od 3 do 20 znaków";
+        $_SESSION['e_login'] = "Login musi posiadać od 3 do 15 znaków";
     }
 
     if (ctype_alnum($login) == false) {
@@ -138,7 +138,9 @@ if (isset($_POST['email'])) {
 
 <body>
     <form class="box" method="POST">
-        <h1>Rejestracja</h1>
+
+        <h1><span>Rejestracja</span></h1>
+
         <p class="text-muted"> Zarejestruj się w serwisie!</p>
 
         <input type="text" autocomplete="off" value="<?php

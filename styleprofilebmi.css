@@ -1,7 +1,11 @@
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+body {
   font-family: "Poppins", sans-serif;
+  background-color: #060c21;
 }
 
 header {
@@ -22,6 +26,7 @@ header {
   color: #410873;
   text-shadow: 0 0 3px #cfa900, 0 0 5px #cfa900;
   margin-left: 20px;
+  margin-top: 20px;
 }
 
 .left_area span {
@@ -42,6 +47,7 @@ header {
   transition: 0.5s;
   transition-property: background;
   border-radius: 24px;
+  margin-top: -29px;
 }
 
 .logout_btn:hover {
@@ -79,8 +85,8 @@ header {
 
 .sidebar .profile_info h4 {
   color: #ccc;
-  margin-top: 4px;
-  margin-bottom: 23px;
+  margin-top: 0;
+  margin-bottom: 20px;
   text-transform: uppercase;
   font-size: 22px;
   font-weight: 900;
@@ -117,7 +123,7 @@ label #sidebar_btn {
   margin: 5px 0;
   transition: 0.5s;
   transition-property: color;
-  margin-top: 16px;
+  margin-top: 25px;
 }
 
 label #sidebar_btn:hover {
@@ -143,7 +149,6 @@ label #sidebar_btn:hover {
   margin-top: 60px;
   padding: 20px;
   margin-left: 250px;
-  background: #060c21;
   background-position: center;
   background-size: cover;
 }
@@ -164,23 +169,6 @@ label #sidebar_btn:hover {
   display: none;
 }
 
-.content .card p {
-  background: #fff;
-  width: 46%;
-  float: left;
-  padding: 25px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  font-size: 18px;
-  opacity: 0.9;
-  border-radius: 24px;
-}
-
-.content .card .info p {
-  width: 96%;
-  font-size: 22px;
-}
-
 @media screen and (max-width: 780px) {
   .sidebar {
     display: none;
@@ -188,12 +176,6 @@ label #sidebar_btn:hover {
 
   #sidebar_btn {
     display: none;
-  }
-
-  .content {
-    margin-left: 0;
-    margin-top: 0;
-    padding: 10px 20px;
   }
 
   #check:checked ~ .content {
@@ -261,4 +243,151 @@ label #sidebar_btn:hover {
   .active {
     display: block;
   }
+}
+
+.container {
+  background-color: #060c21;
+  position: relative;
+  margin: 40px;
+  width: 45%;
+  margin-top: 30px;
+  padding: 10px;
+  margin-left: 30px;
+  height: 75%;
+  background-position: center;
+  background-size: cover;
+  float: left;
+  border-radius: 64px;
+}
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+}
+.container:before {
+  content: "";
+  position: absolute;
+  background: #fff;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  border-radius: 64px;
+}
+
+.container:after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -2;
+  filter: blur(40px);
+  margin: 30px;
+}
+
+.container:before,
+.container::after {
+  background: linear-gradient(235deg, #7a00aa, #cfa900);
+}
+.container hr {
+  background-color: #fff;
+}
+
+.container h1 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.container label {
+  font-size: 35px;
+  color: rgb(204, 199, 199);
+  margin-left: 43%;
+  font-weight: bold;
+}
+
+.container input {
+  font-size: 30px;
+  margin: 10px 5%;
+  width: 90%;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 24px;
+}
+
+.container p {
+  font-size: 25px;
+  font-weight: bold;
+  color: #cfa900;
+  margin: 25px;
+  text-align: center;
+}
+
+.radiocont {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radiocont input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radiocont:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radiocont input:checked ~ .checkmark {
+  background-color: #7a00aa;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radiocont input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radiocont .checkmark:after {
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cfa900;
 }

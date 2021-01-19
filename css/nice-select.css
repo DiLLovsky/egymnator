@@ -25,7 +25,7 @@
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-color: #fff;
+  background-color: #aaa;
   margin-top: 5%;
   font-family: Poppins;
   /* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 

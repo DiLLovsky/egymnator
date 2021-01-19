@@ -19,6 +19,8 @@ header {
   text-transform: uppercase;
   font-size: 22px;
   font-weight: 900;
+  color: #410873;
+  text-shadow: 0 0 3px #cfa900, 0 0 5px #cfa900;
   margin-left: 20px;
   margin-top: 20px;
 }
@@ -57,7 +59,7 @@ header {
   position: fixed;
   left: 0;
   width: 250px;
-  height: calc(100% - 9%);
+  height: calc(100% - 7%);
   transition: 0.5s;
   transition-property: left;
   overflow-y: auto;
@@ -144,7 +146,7 @@ label #sidebar_btn:hover {
   margin-top: 60px;
   padding: 20px;
   margin-left: 250px;
-  background: #828282;
+  background: #060c21;
   height: 100vh;
   background-position: center;
   background-size: cover;
@@ -263,4 +265,118 @@ label #sidebar_btn:hover {
   .active {
     display: block;
   }
+}
+
+h2 {
+  color: #cfa900;
+}
+
+table {
+  color: white;
+}
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 802px) and (max-device-width: 1020px) {
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  .empty {
+    display: none;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  th {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 1px solid #ccc;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  /*
+Label the data
+*/
+  td:nth-of-type(1):before {
+    content: "Poniedziałek";
+  }
+
+  td:nth-of-type(2):before {
+    content: "Wtorek";
+  }
+
+  td:nth-of-type(3):before {
+    content: "Środa";
+  }
+
+  td:nth-of-type(4):before {
+    content: "Czwartek";
+  }
+
+  td:nth-of-type(5):before {
+    content: "Piątek";
+  }
+
+  td:nth-of-type(6):before {
+    content: "Sobota";
+  }
+
+  td:nth-of-type(7):before {
+    content: "Niedziela";
+  }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  body {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+
+@media only screen and (min-device-width: 802px) and (max-device-width: 1020px) {
+  body {
+    width: 495px;
+  }
+}
+
+@media (min-width: 641px) {
+  table {
+    table-layout: fixed;
+  }
+
+  td {
+    width: 33%;
+  }
+}
+
+.row {
+  margin-top: 20px;
+}
+
+.today {
+  background: yellow;
+}
+
+.btn-sm {
+  font-size: 20px;
 }

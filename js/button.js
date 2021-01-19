@@ -166,7 +166,7 @@ $(function() {
 
 		// Clear scene
 		context.clearRect(0, 0, $canvas.width(), $canvas.height());
-		context.fillStyle = '#828282';
+		context.fillStyle = '#060c21';
 		context.fillRect(0, 0, $canvas.width(), $canvas.height());
 
 		// Move points

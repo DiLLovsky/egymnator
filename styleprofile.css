@@ -20,6 +20,8 @@ header {
   text-transform: uppercase;
   font-size: 22px;
   font-weight: 900;
+  color: #410873;
+  text-shadow: 0 0 3px #cfa900, 0 0 5px #cfa900;
 }
 
 .left_area span {
@@ -140,7 +142,7 @@ label #sidebar_btn:hover {
   margin-top: 60px;
   padding: 20px;
   margin-left: 250px;
-  background: #828282;
+  background: #060c21;
   background-position: center;
   background-size: cover;
   height: 110vh;

@@ -83,11 +83,11 @@ function build_calendar($month, $year)
     $calendar = "<table class='table table-bordered'>";
     $calendar .= "<center><h2>$monthName $year</h2>";
 
-    $calendar .= "<a class='btn btn-xs btn-primary' href='?month=" . date('m', mktime(0, 0, 0, $month - 1, 1, $year)) . "&year=" . date('Y', mktime(0, 0, 0, $month - 1, 1, $year)) . "'>< Poprzedni miesiąc</a> ";
+    $calendar .= "<a class='btn btn-s btn-warning' href='?month=" . date('m', mktime(0, 0, 0, $month - 1, 1, $year)) . "&year=" . date('Y', mktime(0, 0, 0, $month - 1, 1, $year)) . "'>< Poprzedni miesiąc</a> ";
 
-    $calendar .= " <a class='btn btn-xs btn-primary' href='?month=" . date('m') . "&year=" . date('Y') . "'>Obecny miesiąc</a> ";
+    $calendar .= " <a class='btn btn-s btn-warning' href='?month=" . date('m') . "&year=" . date('Y') . "'>Obecny miesiąc</a> ";
 
-    $calendar .= "<a class='btn btn-xs btn-primary' href='?month=" . date('m', mktime(0, 0, 0, $month + 1, 1, $year)) . "&year=" . date('Y', mktime(0, 0, 0, $month + 1, 1, $year)) . "'>Następny miesiąc ></a></center><br>";
+    $calendar .= "<a class='btn btn-s btn-warning' href='?month=" . date('m', mktime(0, 0, 0, $month + 1, 1, $year)) . "&year=" . date('Y', mktime(0, 0, 0, $month + 1, 1, $year)) . "'>Następny miesiąc ></a></center><br>";
 
     $calendar .= "<tr>";
 
@@ -166,117 +166,6 @@ function build_calendar($month, $year)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <style>
-        @media only screen and (max-width: 760px),
-        (min-device-width: 802px) and (max-device-width: 1020px) {
-
-            /* Force table to not be like tables anymore */
-            table,
-            thead,
-            tbody,
-            th,
-            td,
-            tr {
-                display: block;
-
-            }
-
-
-
-            .empty {
-                display: none;
-            }
-
-            /* Hide table headers (but not display: none;, for accessibility) */
-            th {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-
-            tr {
-                border: 1px solid #ccc;
-            }
-
-            td {
-                /* Behave  like a "row" */
-                border: none;
-                border-bottom: 1px solid #eee;
-                position: relative;
-                padding-left: 50%;
-            }
-
-
-
-            /*
-		Label the data
-		*/
-            td:nth-of-type(1):before {
-                content: "Poniedziałek";
-            }
-
-            td:nth-of-type(2):before {
-                content: "Wtorek";
-            }
-
-            td:nth-of-type(3):before {
-                content: "Środa";
-            }
-
-            td:nth-of-type(4):before {
-                content: "Czwartek";
-            }
-
-            td:nth-of-type(5):before {
-                content: "Piątek";
-            }
-
-            td:nth-of-type(6):before {
-                content: "Sobota";
-            }
-
-            td:nth-of-type(7):before {
-                content: "Niedziela";
-            }
-
-
-        }
-
-        /* Smartphones (portrait and landscape) ----------- */
-
-        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-            body {
-                padding: 0;
-                margin: 0;
-            }
-        }
-
-        /* iPads (portrait and landscape) ----------- */
-
-        @media only screen and (min-device-width: 802px) and (max-device-width: 1020px) {
-            body {
-                width: 495px;
-            }
-        }
-
-        @media (min-width:641px) {
-            table {
-                table-layout: fixed;
-            }
-
-            td {
-                width: 33%;
-            }
-        }
-
-        .row {
-            margin-top: 20px;
-        }
-
-        .today {
-            background: yellow;
-        }
-    </style>
 </head>
 
 <body>

@@ -8,15 +8,7 @@ $id_users = $_POST['id_users'];
 $id_training = $_POST['id_training'];
 $id_exercises = $_POST['id_exercises'];
 $id = $_POST['id'];
-echo $id_users . " ";
-echo $id_training . " ";
-echo $id_exercises . " ";
-echo $body_part . " ";
-echo $id . " ";
 ?>
-
-
-
 <?php
 
 $polaczenie = mysqli_connect("localhost", "root", "");
@@ -57,6 +49,7 @@ $image_src = "upload/" . $image;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="styleprofile1.css">
 
     <style>
         body {
@@ -66,145 +59,148 @@ $image_src = "upload/" . $image;
 </head>
 
 <body>
-    <div class="card">
-        <p>
-        <div class="card-body">
-            <table id="datatableid" class="table table-bordered table-dark display">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nazwa</th>
-                        <th scope="col">Część ciała</th>
-                        <th scope="col">Poziom trudności</th>
-                        <th scope="col">Typ ćwiczenia</th>
-                        <th scope="col">Typ obciążenia</th>
-                        <th scope="col">Zmień na to ćwiczenie</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    require_once "connect.php";
-                    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-                    $query = "SELECT * FROM exercises WHERE body_part = '$body_part'";
-                    $query_run = mysqli_query($polaczenie, $query);
-                    if ($query_run) {
-                        foreach ($query_run as $row) {
-                    ?>
-                            <tr>
-                                <td> <?php echo $row['id_exercises']; ?></td>
-                                <td> <?php echo $row['name']; ?></td>
-                                <td> <?php echo $row['body_part']; ?></td>
-                                <td> <?php echo $row['difficulty']; ?></td>
-                                <td> <?php echo $row['exercise_type']; ?></td>
-                                <td> <?php echo $row['exercise_weights']; ?></td>
-                                <td>
-                                    <button type="button" class="btn btn-success update_action_page_btn">Zmień na to ćwiczenie</button>
-                                </td>
-                            </tr>
-                    <?php
+    <?php include 'menu1.php'; ?>
+    <div class="content">
+        <div class="card">
+            <p>
+            <div class="card-body">
+                <table id="datatableid" class="table table-bordered table-dark display">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nazwa</th>
+                            <th scope="col">Część ciała</th>
+                            <th scope="col">Poziom trudności</th>
+                            <th scope="col">Typ ćwiczenia</th>
+                            <th scope="col">Typ obciążenia</th>
+                            <th scope="col">Zmień na to ćwiczenie</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        require_once "connect.php";
+                        $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+                        $query = "SELECT * FROM exercises WHERE body_part = '$body_part'";
+                        $query_run = mysqli_query($polaczenie, $query);
+                        if ($query_run) {
+                            foreach ($query_run as $row) {
+                        ?>
+                                <tr>
+                                    <td> <?php echo $row['id_exercises']; ?></td>
+                                    <td> <?php echo $row['name']; ?></td>
+                                    <td> <?php echo $row['body_part']; ?></td>
+                                    <td> <?php echo $row['difficulty']; ?></td>
+                                    <td> <?php echo $row['exercise_type']; ?></td>
+                                    <td> <?php echo $row['exercise_weights']; ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-success update_action_page_btn">Zmień na to ćwiczenie</button>
+                                    </td>
+                                </tr>
+                        <?php
+                            }
+                            $polaczenie->close();
+                        } else {
+                            echo "No Record Found";
                         }
-                        $polaczenie->close();
-                    } else {
-                        echo "No Record Found";
-                    }
-                    ?>
-                </tbody>
-            </table>
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            </p>
         </div>
-        </p>
-    </div>
 
-    <div class="modal fade" id="update_action_page" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Usuń ćwiczenie</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div class="modal fade" id="update_action_page" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Usuń ćwiczenie</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="update_action_page.php" method="POST">
+                        <div class="modal-body ">
+                            <input type="hidden" name="change_exercise_id" id="change_exercise_id">
+                            <?php echo "<input type ='hidden' name='id_training' value='$id_training' /> "; ?>
+                            <?php echo "<input type ='hidden' name='id_exercises' value='$id_exercises' /> "; ?>
+                            <h4>Na pewno chcesz zmienić na to ćwiczenie?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                            <button type="submit" name="update_action_page" class="btn btn-primary">Tak</button>
+                        </div>
+                    </form>
                 </div>
-                <form action="update_action_page.php" method="POST">
-                    <div class="modal-body ">
-                        <input type="hidden" name="change_exercise_id" id="change_exercise_id">
-                        <?php echo "<input type ='hidden' name='id_training' value='$id_training' /> "; ?>
-                        <?php echo "<input type ='hidden' name='id_exercises' value='$id_exercises' /> "; ?>
-                        <h4>Na pewno chcesz zmienić na to ćwiczenie?</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
-                        <button type="submit" name="update_action_page" class="btn btn-primary">Tak</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <table id="datatableid1" class="table table-bordered table-dark display">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nazwa</th>
-                        <th scope="col">Część ciała</th>
-                        <th scope="col">Poziom trudności</th>
-                        <th scope="col">Typ ćwiczenia</th>
-                        <th scope="col">Typ obciążenia</th>
-                        <th scope="col">Zmień na to ćwiczenie</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    require_once "connect.php";
-                    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-                    $query = "SELECT * FROM exercises";
-                    $query_run = mysqli_query($polaczenie, $query);
-                    if ($query_run) {
-                        foreach ($query_run as $row) {
-                    ?>
-                            <tr>
-                                <td> <?php echo $row['id_exercises']; ?></td>
-                                <td> <?php echo $row['name']; ?></td>
-                                <td> <?php echo $row['body_part']; ?></td>
-                                <td> <?php echo $row['difficulty']; ?></td>
-                                <td> <?php echo $row['exercise_type']; ?></td>
-                                <td> <?php echo $row['exercise_weights']; ?></td>
-                                <td>
-                                    <button type="button" class="btn btn-success update_action_page_btn">Zmień na to ćwiczenie</button>
-                                </td>
-                            </tr>
-                    <?php
+        <div class="card">
+            <div class="card-body">
+                <table id="datatableid1" class="table table-bordered table-dark display">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nazwa</th>
+                            <th scope="col">Część ciała</th>
+                            <th scope="col">Poziom trudności</th>
+                            <th scope="col">Typ ćwiczenia</th>
+                            <th scope="col">Typ obciążenia</th>
+                            <th scope="col">Zmień na to ćwiczenie</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        require_once "connect.php";
+                        $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+                        $query = "SELECT * FROM exercises";
+                        $query_run = mysqli_query($polaczenie, $query);
+                        if ($query_run) {
+                            foreach ($query_run as $row) {
+                        ?>
+                                <tr>
+                                    <td> <?php echo $row['id_exercises']; ?></td>
+                                    <td> <?php echo $row['name']; ?></td>
+                                    <td> <?php echo $row['body_part']; ?></td>
+                                    <td> <?php echo $row['difficulty']; ?></td>
+                                    <td> <?php echo $row['exercise_type']; ?></td>
+                                    <td> <?php echo $row['exercise_weights']; ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-success update_action_page_btn">Zmień na to ćwiczenie</button>
+                                    </td>
+                                </tr>
+                        <?php
+                            }
+                            $polaczenie->close();
+                        } else {
+                            echo "No Record Found";
                         }
-                        $polaczenie->close();
-                    } else {
-                        echo "No Record Found";
-                    }
-                    ?>
-                </tbody>
+                        ?>
+                    </tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="modal fade" id="update_action_page" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Usuń ćwiczenie</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div class="modal fade" id="update_action_page" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Usuń ćwiczenie</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="update_action_page.php" method="POST">
+                        <div class="modal-body ">
+                            <input type="hidden" name="change_exercise_id" id="change_exercise_id">
+                            <?php echo "<input type ='hidden' name='id_training' value='$id_training' /> "; ?>
+                            <?php echo "<input type ='hidden' name='id_exercises' value='$id_exercises' /> "; ?>
+                            <h4>Na pewno chcesz zmienić na to ćwiczenie?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                            <button type="submit" name="update_action_page_btn" class="btn btn-primary">Tak</button>
+                        </div>
+                    </form>
                 </div>
-                <form action="update_action_page.php" method="POST">
-                    <div class="modal-body ">
-                        <input type="hidden" name="change_exercise_id" id="change_exercise_id">
-                        <?php echo "<input type ='hidden' name='id_training' value='$id_training' /> "; ?>
-                        <?php echo "<input type ='hidden' name='id_exercises' value='$id_exercises' /> "; ?>
-                        <h4>Na pewno chcesz zmienić na to ćwiczenie?</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
-                        <button type="submit" name="update_action_page_btn" class="btn btn-primary">Tak</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
