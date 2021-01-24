@@ -52,23 +52,43 @@ $image_src = "upload/" . $image;
 
     <div class="content">
         <div class="card">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur molestie dolor, sed elementum risus venenatis et. Praesent vitae orci sit amet erat sagittis suscipit ac nec turpis. Maecenas eu varius turpis. Pellentesque fermentum, lorem sit amet auctor dignissim, mauris velit venenatis neque, non vulputate sem lacus non diam. Curabitur eget scelerisque nulla. Donec augue libero, ullamcorper ac dictum sit amet, semper sodales quam. Mauris volutpat accumsan arcu ac porta. Sed lectus arcu, egestas sit amet fermentum sed, sollicitudin eu turpis. Vivamus nec efficitur ipsum, nec fermentum quam. Suspendisse nec volutpat tellus. Cras at consequat quam. Cras pretium eros ipsum, nec sagittis turpis gravida et.</p>
-        </div>
-        <div class="card">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur molestie dolor, sed elementum risus venenatis et. Praesent vitae orci sit amet erat sagittis suscipit ac nec turpis. Maecenas eu varius turpis. Pellentesque fermentum, lorem sit amet auctor dignissim, mauris velit venenatis neque, non vulputate sem lacus non diam. Curabitur eget scelerisque nulla. Donec augue libero, ullamcorper ac dictum sit amet, semper sodales quam. Mauris volutpat accumsan arcu ac porta. Sed lectus arcu, egestas sit amet fermentum sed, sollicitudin eu turpis. Vivamus nec efficitur ipsum, nec fermentum quam. Suspendisse nec volutpat tellus. Cras at consequat quam. Cras pretium eros ipsum, nec sagittis turpis gravida et.</p>
-        </div>
-        <div class="card">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur molestie dolor, sed elementum risus venenatis et. Praesent vitae orci sit amet erat sagittis suscipit ac nec turpis. Maecenas eu varius turpis. Pellentesque fermentum, lorem sit amet auctor dignissim, mauris velit venenatis neque, non vulputate sem lacus non diam. Curabitur eget scelerisque nulla. Donec augue libero, ullamcorper ac dictum sit amet, semper sodales quam. Mauris volutpat accumsan arcu ac porta. Sed lectus arcu, egestas sit amet fermentum sed, sollicitudin eu turpis. Vivamus nec efficitur ipsum, nec fermentum quam. Suspendisse nec volutpat tellus. Cras at consequat quam. Cras pretium eros ipsum, nec sagittis turpis gravida et.</p>
-        </div>
-        <div class="card">
             <?php
-            echo "<p>Ćwiczenia " . $_SESSION['id_users'] . '![<a href="exercises.php">Wszystkie ćwiczenia</a>]</p>';
-            echo '<p>Edytuj swój profil: [<a href="profile.php">Profil</a>]</p>';
             $dataczas = new DateTime();
-            echo '<p>' . $dataczas->format('Y-m-d') . '</p>';
-            echo '<p>' . date('Y-m-d') . '</p>';
+            echo '<p>Data: ' . date('d-m-Y') . '</p>';
             ?>
         </div>
+        <div class="card">
+            <div class="info">
+                <p>"Tym co odróżnia zwykłych ludzi od odnoszących sukces nie jest brak siły, nie jest to też brak wiedzy, ale przeważnie jest to brak woli" ~ Vince Lambardi</p>
+            </div>
+        </div>
+        <div class="card">
+            <p>Dieta jest nieodłączną częścią treningu. Pamiętaj, że:<br>
+                1g białka = 4kcal<br>
+                1g tłuszczu = 9kcal<br>
+                1g węglowodanów = 4kcal<br>
+            </p>
+        </div>
+        <div class="card">
+            <p>Najlepszym sposobem na kontrolowanie swojej wagi jest codzienne ważenie swojego ciała a następnie wyciąganie średniej z całego tygodnia. <br>Jeżeli średnia jest większa niż z tygodnia poprzedniego to znaczy, że za dużo kalorii spożywamy.
+            </p>
+        </div>
+        <div class="card">
+            <div class="info">
+                <p>FBW:<br>
+                    W pierwszym tygodniu w poniedziałek wykonuj trening A, w środę trening B a w piątek ponownie trening A. Po weekendowej przerwie rozpocznij tydzień od treningu B.<br><br>
+                    Push Pull Legs:<br>
+                    W poniedziałek zastosuj trening Push a we wtorek trening Pull, po środowej przerwie w czwartek zacznij od ćwiczeń wypychających a następnego dnia od ćwiczeń przyciągających.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="info">
+                <p>Dla wagi nie jest ważne z czego dostarczamy kalorie, dla zdrowia już tak.
+                </p>
+            </div>
+        </div>
+
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
