@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['zalogowany'])) {
+    header('Location: index.php');
+    exit();
+}
 $polaczenie = mysqli_connect("localhost", "root", "");
 $db = mysqli_select_db($polaczenie, 'egymnator');
 

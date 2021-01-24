@@ -37,15 +37,10 @@ $image_src = "upload/" . $image;
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/button.js"></script>
-    <link rel="stylesheet" href="styleprofile.css">
+    <link rel="stylesheet" href="css/styleprofile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
-    <style>
-        body {
-            font-family: 'Poppins';
-        }
-    </style>
 </head>
 
 <body>
@@ -54,20 +49,20 @@ $image_src = "upload/" . $image;
         <form action="training.php" method="POST">
             <div class="box">
                 <h2>Stwórz swoj plan treningowy</h2>
-                <select name="fbworppl" class="select-css">
+                <select name="fbworppl" required class="select-css">
                     <option disabled selected>Jaki chcesz trening?</option>
                     <option value="fbw">Trzydniowy - Full Body Workout</option>
                     <option value="ppl">Czterodniowy - Push Pull Legs Workout</option>
                 </select>
 
-                <select name="difficulty" class="select-css">
+                <select name="difficulty" required class="select-css">
                     <option disabled selected>Jak jesteś doświadczony?</option>
                     <option value="beginner">Początkujący</option>
                     <option value="intermediate">Średniozaawansowany</option>
                     <option value="advanced">Zaawansowany</option>
                 </select>
 
-                <select name="experience" class="select-css">
+                <select name="experience" required class="select-css">
                     <option disabled selected>Jak ciężko chcesz ćwiczyć?</option>
                     <option value="easy">Lekko</option>
                     <option value="medium">Średnio</option>
@@ -80,5 +75,12 @@ $image_src = "upload/" . $image;
         </form>
     </div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.nav_btn').click(function() {
+            $('.mobile_nav_items').toggleClass('active');
+        });
+    });
+</script>
 
 </html>

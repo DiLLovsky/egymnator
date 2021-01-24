@@ -13,135 +13,152 @@ if ($asd == '3' || $asd == '2') {
 }
 ?>
 
+<?php
+include("connect.php");
+$id = $_SESSION['id_users'];
+$sql = "SELECT avatar FROM users WHERE id_users = '$id'";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_array($result);
+
+$image = $row['avatar'];
+$image_src = "upload/" . $image;
+
+?>
+
 <!DOCTYPE HTML>
 <html lang="pl">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE = edge, chrome-1" />
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="style.css">
+    <title>E-Gymnator Admin Panel</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/styleprofile1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
 </head>
 
 <body>
+    <?php include 'menuadmin.php'; ?>
+    <div class="content">
+        <div class="card">
+            <div class="card-body">
+                <table id="datatableid" class="table table-bordered table-dark display">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Login</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Imię</th>
+                            <th scope="col">Nazwisko</th>
+                            <th scope="col">Wiek</th>
+                            <th scope="col">Wzrost</th>
+                            <th scope="col">Waga</th>
+                            <th scope="col">Typ użytkownika</th>
+                            <th scope="col">Trener</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        require_once "connect.php";
+                        $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
-    <div class="card">
-        <div class="card-body">
-            <table id="datatableid" class="table table-bordered table-dark display">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Login</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Imię</th>
-                        <th scope="col">Nazwisko</th>
-                        <th scope="col">Wiek</th>
-                        <th scope="col">Wzrost</th>
-                        <th scope="col">Waga</th>
-                        <th scope="col">Typ użytkownika</th>
-                        <th scope="col">Trener</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    require_once "connect.php";
-                    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+                        $query = "SELECT * FROM users WHERE NOT (login = 'admin')";
+                        $query_run = mysqli_query($polaczenie, $query);
 
-                    $query = "SELECT * FROM users WHERE NOT (login = 'admin')";
-                    $query_run = mysqli_query($polaczenie, $query);
-
-                    if ($query_run) {
-                        foreach ($query_run as $row) {
-                    ?>
-                            <tr>
-                                <td> <?php echo $row['id_users']; ?></td>
-                                <td> <?php echo $row['login']; ?></td>
-                                <td> <?php echo $row['email']; ?></td>
-                                <td> <?php echo $row['name']; ?></td>
-                                <td> <?php echo $row['surname']; ?></td>
-                                <td> <?php echo $row['age']; ?></td>
-                                <td> <?php echo $row['height']; ?></td>
-                                <td> <?php echo $row['weight']; ?></td>
-                                <td> <?php if ($row['id_users_status'] == '2') {
-                                            echo 'Trener';
+                        if ($query_run) {
+                            foreach ($query_run as $row) {
+                        ?>
+                                <tr>
+                                    <td> <?php echo $row['id_users']; ?></td>
+                                    <td> <?php echo $row['login']; ?></td>
+                                    <td> <?php echo $row['email']; ?></td>
+                                    <td> <?php echo $row['name']; ?></td>
+                                    <td> <?php echo $row['surname']; ?></td>
+                                    <td> <?php echo $row['age']; ?></td>
+                                    <td> <?php echo $row['height']; ?></td>
+                                    <td> <?php echo $row['weight']; ?></td>
+                                    <td> <?php if ($row['id_users_status'] == '2') {
+                                                echo 'Trener';
+                                            } else {
+                                                echo 'Klient';
+                                            } ?></td>
+                                    <td>
+                                        <?php
+                                        if ($row['id_users_status'] == '2') {
+                                        ?>
+                                            <button type="sumbit" class="btn btn-warning makeclientbtn">Klient</button>
+                                        <?php
                                         } else {
-                                            echo 'Klient';
-                                        } ?></td>
-                                <td>
-                                    <?php
-                                    if ($row['id_users_status'] == '2') {
-                                    ?>
-                                        <button type="sumbit" class="btn btn-warning makeclientbtn">Klient</button>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <button type="submit" class="btn btn-success maketrenerbtn">Trener</button>
-                                    <?php
-                                    }
-                                    ?>
-                                </td>
+                                        ?>
+                                            <button type="submit" class="btn btn-success maketrenerbtn">Trener</button>
+                                        <?php
+                                        }
+                                        ?>
+                                    </td>
 
-                            </tr>
-                    <?php
+                                </tr>
+                        <?php
+                            }
+                            $polaczenie->close();
+                        } else {
+                            echo "No Record Found";
                         }
-                        $polaczenie->close();
-                    } else {
-                        echo "No Record Found";
-                    }
-                    ?>
-                </tbody>
+                        ?>
+                    </tbody>
 
-            </table>
-        </div>
-    </div>
-
-    <!-- Trener -> Client Modal -->
-    <div class="modal fade" id="makeclientmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Trener -> Client</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="updateclientstatus.php" method="POST">
-                    <div class="modal-body ">
-                        <input type="hidden" name="updateclient_id" id="updateclient_id">
-                        <h4>Na pewno chcesz zmienić tego użytkownika na klineta?</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
-                        <button type="submit" name="makeclient" class="btn btn-primary">Tak</button>
-                    </div>
-                </form>
+                </table>
             </div>
         </div>
-    </div>
-    <!-- ########################################################################################################################################################-->
 
-    <!-- Client -> Trener Modal -->
-    <div class="modal fade" id="maketrenermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Client -> Trener</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <!-- Trener -> Client Modal -->
+        <div class="modal fade" id="makeclientmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Trener -> Client</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="updateclientstatus.php" method="POST">
+                        <div class="modal-body ">
+                            <input type="hidden" name="updateclient_id" id="updateclient_id">
+                            <h4>Na pewno chcesz zmienić tego użytkownika na klineta?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                            <button type="submit" name="makeclient" class="btn btn-primary">Tak</button>
+                        </div>
+                    </form>
                 </div>
-                <form action="updateclientstatus.php" method="POST">
-                    <div class="modal-body ">
-                        <input type="hidden" name="updatetrener_id" id="updatetrener_id">
-                        <h4>Na pewno chcesz zmienić tego użytkownika na trenera?</h4>
+            </div>
+        </div>
+        <!-- ########################################################################################################################################################-->
+
+        <!-- Client -> Trener Modal -->
+        <div class="modal fade" id="maketrenermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Client -> Trener</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
-                        <button type="submit" name="maketrener" class="btn btn-primary">Tak</button>
-                    </div>
-                </form>
+                    <form action="updateclientstatus.php" method="POST">
+                        <div class="modal-body ">
+                            <input type="hidden" name="updatetrener_id" id="updatetrener_id">
+                            <h4>Na pewno chcesz zmienić tego użytkownika na trenera?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                            <button type="submit" name="maketrener" class="btn btn-primary">Tak</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

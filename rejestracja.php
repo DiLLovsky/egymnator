@@ -124,6 +124,7 @@ if (isset($_POST['email'])) {
     <meta http-equiv="X-UA-Compatible" content="IE = edge, chrome-1" />
     <title>E-Gymnator - załóż darmowe konto</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     </script>
 
     <style>
@@ -133,7 +134,7 @@ if (isset($_POST['email'])) {
             margin-bottom: 10px;
         }
     </style>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

@@ -19,7 +19,13 @@
     <div class="mobile_nav_items">
         <a href="dashboard.php"><i class="fas fa-home"></i><span>Dashboard</span></a>
         <a href="createtraining.php"><i class="fas fa-desktop"></i><span>Stwórz plan</span></a>
-        <a href="exercises.php"><i class="fas fa-plus"></i><span>Dodaj ćwiczenia</span></a>
+        <?php if ($asd == '2') { ?>
+            <a href="exercises.php"><i class="fas fa-plus"></i><span>Dodaj ćwiczenia</span></a>
+        <?php } else { ?>
+            <a href="allexercises.php"><i class="fas fa-eye"></i></i><span>Ćwiczenia</span></a>
+        <?php
+        }
+        ?>
         <a href="mytraining.php"><i class="fas fa-dumbbell"></i><span>Moje treningi</span></a>
         <a href="bmi.php"><i class="fas fa-weight"></i><span>Oblicz BMI i BMR</span></a>
         <a href="calendar.php"><i class="fas fa-calendar-alt"></i><span>Kalendarz</span></a>

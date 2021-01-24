@@ -2,6 +2,7 @@ body {
   font-family: sans-serif;
   background-image: linear-gradient(to right, #fdb827, #410873);
   color: grey;
+  font-family: "Poppins", sans-serif;
 }
 
 .box {

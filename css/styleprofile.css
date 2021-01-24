@@ -46,6 +46,8 @@ header {
 
 .logout_btn:hover {
   background: #7a00aa;
+  text-decoration: none;
+  color: white;
 }
 
 .sidebar {
@@ -263,4 +265,75 @@ label #sidebar_btn:hover {
   .active {
     display: block;
   }
+}
+
+.box {
+  position: relative;
+  bottom: 100%;
+  text-align: center;
+  color: white;
+}
+.text-muted {
+  text-shadow: 2px 2px 8px #fdb827;
+}
+
+.box input[type="text"],
+.box input[type="password"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #7a00aa;
+  padding: 10px 10px;
+  width: 25%;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+.box h1 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 900;
+  color: #cfa900;
+}
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+  width: 50%;
+  border-color: #cfa900;
+}
+
+.box input[type="submit"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #7a00aa;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.box input[type="submit"]:hover {
+  border-color: #cfa900;
+}
+
+img {
+  vertical-align: middle;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
+
+hr {
+  border: 3px solid #cfa900;
+  border-radius: 5px;
 }

@@ -72,6 +72,7 @@ body {
 .box h2 {
   color: #7a00aa;
   font-size: 40px;
+  text-align: center;
 }
 
 .btn-liquid {
@@ -81,19 +82,20 @@ body {
   height: 60px;
   border-radius: 27px;
   color: #fff;
-  font: 700 24px/60px "Poppins", sans-serif;
+  font: 900 24px/60px "Poppins", sans-serif;
   letter-spacing: 0.05em;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   top: 50px;
-  left: 40%;
+  left: 0%;
   cursor: pointer;
 }
 
 .btn-liquid .inner {
   position: relative;
   z-index: 2;
+  text-align: center;
 }
 
 .btn-liquid canvas {
@@ -103,4 +105,5 @@ body {
   bottom: -50px;
   left: -50px;
   z-index: 1;
+  text-align: center;
 }
