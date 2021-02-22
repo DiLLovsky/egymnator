@@ -31,6 +31,7 @@ $image_src = "upload/" . $image;
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE = edge, chrome-1" />
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
     <title>E-Gymnator Admin Panel</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
@@ -40,11 +41,85 @@ $image_src = "upload/" . $image;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
 </head>
 
+<style>
+    @media(max-width: 1450px) {
+        .content {
+            width: calc(100%-3%);
+        }
+
+        .card-body {
+            margin: 0;
+            padding: 0;
+            padding-left: 2px;
+        }
+
+        thead {
+            width: 100%;
+        }
+
+        .table thead {
+            display: none;
+        }
+
+        .table thead h3 {
+            font-size: 15px;
+            font-weight: bold;
+            width: 100%;
+            display: block;
+        }
+
+        .table thead tr td {
+            width: 100%;
+        }
+
+        .table tbody {
+            width: 100%;
+            display: block;
+        }
+
+        .table {
+            width: 100%;
+        }
+
+        .table tr,
+        .table td {
+            display: block;
+            width: 100%;
+        }
+
+        .table td {
+            text-align: right;
+            padding-left: 0%;
+            text-align: right;
+            position: relative;
+        }
+
+        .table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 50%;
+            padding-left: 15px;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+    }
+
+    @media(max-width: 490px) {
+        .table td::before {
+            display: none;
+        }
+
+    }
+</style>
+
 <body>
     <?php include 'menuadmin.php'; ?>
     <div class="content">
-        <div class="card">
-            <div class="card-body">
+        <div class="card-body">
+            <div class="table-responsive">
                 <table id="datatableid" class="table table-bordered table-dark display">
                     <thead>
                         <tr>
@@ -72,24 +147,24 @@ $image_src = "upload/" . $image;
                             foreach ($query_run as $row) {
                         ?>
                                 <tr>
-                                    <td> <?php echo $row['id_users']; ?></td>
-                                    <td> <?php echo $row['login']; ?></td>
-                                    <td> <?php echo $row['email']; ?></td>
-                                    <td> <?php echo $row['name']; ?></td>
-                                    <td> <?php echo $row['surname']; ?></td>
-                                    <td> <?php echo $row['age']; ?></td>
-                                    <td> <?php echo $row['height']; ?></td>
-                                    <td> <?php echo $row['weight']; ?></td>
-                                    <td> <?php if ($row['id_users_status'] == '2') {
-                                                echo 'Trener';
-                                            } else {
-                                                echo 'Klient';
-                                            } ?></td>
-                                    <td>
+                                    <td data-label="#"> <?php echo $row['id_users']; ?></td>
+                                    <td data-label="Login"> <?php echo $row['login']; ?></td>
+                                    <td data-label="Mail"> <?php echo $row['email']; ?></td>
+                                    <td data-label="Imię"> <?php echo $row['name']; ?></td>
+                                    <td data-label="Nazwisko"> <?php echo $row['surname']; ?></td>
+                                    <td data-label="Wiek"> <?php echo $row['age']; ?></td>
+                                    <td data-label="Wzrost"> <?php echo $row['height']; ?></td>
+                                    <td data-label="Waga"> <?php echo $row['weight']; ?></td>
+                                    <td data-label="Zmień"> <?php if ($row['id_users_status'] == '2') {
+                                                                echo 'Trener';
+                                                            } else {
+                                                                echo 'Użytkownik';
+                                                            } ?></td>
+                                    <td data-label="Zmień">
                                         <?php
                                         if ($row['id_users_status'] == '2') {
                                         ?>
-                                            <button type="sumbit" class="btn btn-warning makeclientbtn">Klient</button>
+                                            <button type="sumbit" class="btn btn-warning makeclientbtn">Użytkownik</button>
                                         <?php
                                         } else {
                                         ?>
@@ -233,6 +308,13 @@ $image_src = "upload/" . $image;
                 console.log(data);
 
                 $('#updatetrener_id').val(data[0]);
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.nav_btn').click(function() {
+                $('.mobile_nav_items').toggleClass('active');
             });
         });
     </script>

@@ -1,5 +1,8 @@
 <?php
 
+require_once "connect.php";
+$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+
 session_start();
 
 if (!isset($_SESSION['zalogowany'])) {
@@ -30,11 +33,11 @@ $image_src = "upload/" . $image;
 <html lang="pl">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE = edge, chrome-1" />
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
     <title> E-Gymnator - Ćwiczenia </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
@@ -42,13 +45,86 @@ $image_src = "upload/" . $image;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
+<style>
+    @media(max-width: 1255px) {
+        .content {
+            width: calc(100%-3%);
+        }
+
+        .card-body {
+            margin: 0;
+            padding: 0;
+            padding-left: 2px;
+        }
+
+        thead {
+            width: 100%;
+        }
+
+        .table thead {
+            display: none;
+        }
+
+        .table thead h3 {
+            font-size: 15px;
+            font-weight: bold;
+            width: 100%;
+            display: block;
+        }
+
+        .table thead tr td {
+            width: 100%;
+        }
+
+        .table tbody {
+            width: 100%;
+            display: block;
+        }
+
+        .table {
+            width: 100%;
+        }
+
+        .table tr,
+        .table td {
+            display: block;
+            width: 100%;
+        }
+
+        .table td {
+            text-align: right;
+            padding-left: 0%;
+            text-align: right;
+            position: relative;
+        }
+
+        .table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 50%;
+            padding-left: 15px;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+    }
+
+    @media(max-width: 490px) {
+        .table td::before {
+            display: none;
+        }
+
+    }
+</style>
 
 <body>
     <?php include 'menu1.php'; ?>
     <div class="content">
-        <div class="card">
-            <div class="card-body">
-                <table id="datatableid" class="table table-bordered table-dark display">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="datatableid" class="table table-bordered table-dark display table-striped">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -71,16 +147,16 @@ $image_src = "upload/" . $image;
                             foreach ($query_run as $row) {
                         ?>
                                 <tr>
-                                    <td> <?php echo $row['id_exercises']; ?></td>
-                                    <td> <?php echo $row['name']; ?></td>
-                                    <td> <?php echo $row['body_part']; ?></td>
-                                    <td> <?php echo $row['difficulty']; ?></td>
-                                    <td> <?php echo $row['exercise_type']; ?></td>
-                                    <td> <?php echo $row['exercise_weights']; ?></td>
-                                    <td>
+                                    <td data-label="#"> <?php echo $row['id_exercises']; ?></td>
+                                    <td data-label="Nazwa"> <?php echo $row['name']; ?></td>
+                                    <td data-label="Część ciała"> <?php echo $row['body_part']; ?></td>
+                                    <td data-label="Poziom trudności"> <?php echo $row['difficulty']; ?></td>
+                                    <td data-label="Typ ćwiczenia"> <?php echo $row['exercise_type']; ?></td>
+                                    <td data-label="Typ obciążenia"> <?php echo $row['exercise_weights']; ?></td>
+                                    <td data-label="Edytuj">
                                         <button type="button" class="btn btn-success editbtn">Edytuj</button>
                                     </td>
-                                    <td>
+                                    <td data-label="Usuń">
                                         <button type="button" class="btn btn-danger deletebtn">Usuń</button>
                                     </td>
                                 </tr>
@@ -201,18 +277,11 @@ $image_src = "upload/" . $image;
             </div>
         </div>
         <div class="container">
-            <div class="jumbotron">
-                <div class="card">
-                    <h2>Dodaj nowe ćwiczenie!</h2>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exerciseaddmodal">
-                            Dodaj ćwiczenie
-                        </button>
-                    </div>
-                </div>
+            <div class="card">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#exerciseaddmodal">
+                    Dodaj ćwiczenie
+                </button>
             </div>
         </div>
     </div>
@@ -347,20 +416,20 @@ $image_src = "upload/" . $image;
     </div>
     <!-- ########################################################################################################################################################-->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.nav_btn').click(function() {
+                $('.mobile_nav_items').toggleClass('active');
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
-
             $('#datatableid').DataTable({
-                responsive: true,
                 "lengthMenu": [
                     [10, 25, 50, -1],
                     [10, 25, 50, "All"]
                 ],
-
                 language: {
                     search: "_INPUT_",
                     searchPlaceholder: "Szukaj ćwiczenia",
@@ -426,6 +495,11 @@ $image_src = "upload/" . $image;
             });
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
 </body>
 
 </html>

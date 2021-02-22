@@ -1,6 +1,9 @@
 <?php
-
+require_once "connect.php";
+$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 session_start();
+
+
 
 if (!isset($_SESSION['zalogowany'])) {
     header('Location: index.php');
@@ -41,7 +44,9 @@ $image_src = "upload/" . $image;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
         .content {
-            background: url(background.png) !important;
+            background-image: url(background.png) !important;
+            background-repeat: repeat-y;
+            height: 100vh;
         }
     </style>
 
@@ -51,12 +56,6 @@ $image_src = "upload/" . $image;
     <?php include 'menu1.php'; ?>
 
     <div class="content">
-        <div class="card">
-            <?php
-            $dataczas = new DateTime();
-            echo '<p>Data: ' . date('d-m-Y') . '</p>';
-            ?>
-        </div>
         <div class="card">
             <div class="info">
                 <p>"Tym co odróżnia zwykłych ludzi od odnoszących sukces nie jest brak siły, nie jest to też brak wiedzy, ale przeważnie jest to brak woli" ~ Vince Lambardi</p>
@@ -84,11 +83,9 @@ $image_src = "upload/" . $image;
         </div>
         <div class="card">
             <div class="info">
-                <p>Dla wagi nie jest ważne z czego dostarczamy kalorie, dla zdrowia już tak.
-                </p>
+                <p>Dla wagi nie jest ważne z czego dostarczamy kalorie, dla zdrowia już tak.</p>
             </div>
         </div>
-
     </div>
     <script type="text/javascript">
         $(document).ready(function() {

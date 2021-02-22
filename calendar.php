@@ -125,9 +125,9 @@ function build_calendar($month, $year)
         $today = $date == date('Y-m-d') ? "today" : "";
 
         if (in_array($date, $trained)) {
-            $calendar .= "<td class='$today'><h1>$currentDay</h1> <button class='btn btn-success btn-sm'>Trening wykonany</button>";
+            $calendar .= "<td class='$today'><h1>$currentDay</h1> <button class='btn btn-success btn-m'>Trening wykonany</button>";
         } else {
-            $calendar .= "<td><h1>$currentDay</h1> <a href='trained.php?date=" . $date . "' class='btn btn-warning btn-sm'>Trening</a>";
+            $calendar .= "<td><h1>$currentDay</h1> <a href='trained.php?date=" . $date . "' class='btn btn-warning btn-m'>Trening</a>";
         }
 
 

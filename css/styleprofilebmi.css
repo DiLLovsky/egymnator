@@ -12,7 +12,7 @@ header {
   z-index: 1;
   position: fixed;
   background: #22242a;
-  width: calc(100% - 0%);
+  width: 100%;
   top: 0;
   height: 70px;
 }
@@ -24,18 +24,18 @@ header {
   font-size: 22px;
   font-weight: 900;
   color: #410873;
-  text-shadow: 0 0 3px #cfa900, 0 0 5px #cfa900;
+  text-shadow: 0 0 3px #fdb827, 0 0 5px #fdb827;
   margin-left: 20px;
   margin-top: 20px;
 }
 
 .left_area span {
-  color: #cfa900;
+  color: #fdb827;
 }
 
 .logout_btn {
   padding: 5px;
-  background: #cfa900;
+  background: #fdb827;
   text-decoration: none;
   float: right;
   margin-top: -30px;
@@ -106,7 +106,7 @@ header {
 }
 
 .sidebar a:hover {
-  background: #cfa900;
+  background: #fdb827;
 }
 
 .sidebar i {
@@ -127,7 +127,7 @@ label #sidebar_btn {
 }
 
 label #sidebar_btn:hover {
-  color: #cfa900;
+  color: #fdb827;
 }
 
 #check:checked ~ .sidebar {
@@ -169,7 +169,62 @@ label #sidebar_btn:hover {
   display: none;
 }
 
+.container {
+  background-color: #060c21;
+  position: relative;
+  width: 50%;
+  margin-top: 50px;
+  padding: 10px;
+  height: 75%;
+  margin-left: 23%;
+  background-position: center;
+  background-size: cover;
+  border-radius: 64px;
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 960px) {
+  .container {
+    background-color: #060c21;
+    position: relative;
+    width: 65%;
+    margin-top: 50px;
+    padding: 10px;
+    height: 75%;
+    margin-left: 35%;
+    background-position: center;
+    background-size: cover;
+    border-radius: 64px;
+  }
+  .content {
+    width: 100%;
+    padding: 20px;
+    margin-left: 0px;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
 @media screen and (max-width: 780px) {
+  .container {
+    margin-left: 2%;
+    margin-right: 0;
+    background-color: #060c21;
+    width: 90%;
+    margin-top: 50px;
+    padding: 10px;
+    height: 75%;
+    background-position: center;
+    background-size: cover;
+    border-radius: 64px;
+  }
+  .content {
+    width: 100%;
+    padding: 0px;
+    margin-left: 0px;
+    background-position: center;
+    background-size: cover;
+  }
   .sidebar {
     display: none;
   }
@@ -212,7 +267,7 @@ label #sidebar_btn:hover {
   }
 
   .nav_bar .nav_btn:hover {
-    color: #cfa900;
+    color: #fdb827;
   }
 
   .mobile_nav_items {
@@ -233,7 +288,7 @@ label #sidebar_btn:hover {
   }
 
   .mobile_nav_items a:hover {
-    background: #cfa900;
+    background: #fdb827;
   }
 
   .mobile_nav_items i {
@@ -243,27 +298,13 @@ label #sidebar_btn:hover {
   .active {
     display: block;
   }
-}
 
-.container {
-  background-color: #060c21;
-  position: relative;
-  margin: 40px;
-  width: 45%;
-  margin-top: 30px;
-  padding: 10px;
-  margin-left: 30px;
-  height: 75%;
-  background-position: center;
-  background-size: cover;
-  float: left;
-  border-radius: 64px;
-}
-@media screen and (max-width: 600px) {
-  .container {
-    width: 100%;
+  #gender_Female,
+  #gender_Male {
+    display: none;
   }
 }
+
 .container:before {
   content: "";
   position: absolute;
@@ -291,7 +332,7 @@ label #sidebar_btn:hover {
 
 .container:before,
 .container::after {
-  background: linear-gradient(235deg, #7a00aa, #cfa900);
+  background: linear-gradient(235deg, #7a00aa, #fdb827);
 }
 .container hr {
   background-color: #fff;
@@ -315,6 +356,7 @@ label #sidebar_btn:hover {
 .container input {
   font-size: 30px;
   margin: 10px 5%;
+  margin-right: 0px;
   width: 90%;
   text-align: center;
   font-weight: bold;
@@ -324,7 +366,7 @@ label #sidebar_btn:hover {
 .container p {
   font-size: 25px;
   font-weight: bold;
-  color: #cfa900;
+  color: #fdb827;
   margin: 25px;
   text-align: center;
 }
@@ -389,5 +431,5 @@ label #sidebar_btn:hover {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #cfa900;
+  background: #fdb827;
 }

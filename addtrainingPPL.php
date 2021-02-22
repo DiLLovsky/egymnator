@@ -4,8 +4,8 @@ if (!isset($_SESSION['zalogowany'])) {
     header('Location: index.php');
     exit();
 }
-$polaczenie = mysqli_connect("localhost", "root", "");
-$db = mysqli_select_db($polaczenie, 'egymnator');
+require_once "connect.php";
+$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
 $id = $_POST['id'];
 
@@ -38,10 +38,10 @@ if (isset($_POST['addtraining'])) {
 
     for ($i = 0; $i < $lenght; $i++) {
         if ($i <= 4) {
-            $query = "INSERT INTO `training_exercises` (`id`, `id_training`, `id_exercises`, `reps`, `sets`, `type`) VALUES (NULL, '$id_training','$tab[$i]', '12', '4', 'PUSH')";
+            $query = "INSERT INTO `training_exercises` (`id`, `id_training`, `id_exercises`, `type`) VALUES (NULL, '$id_training','$tab[$i]', 'PUSH')";
             $query_run = mysqli_query($polaczenie, $query);
         } else {
-            $query = "INSERT INTO `training_exercises` (`id`, `id_training`, `id_exercises`, `reps`, `sets`, `type`) VALUES (NULL, '$id_training','$tab[$i]', '12', '4', 'PULL')";
+            $query = "INSERT INTO `training_exercises` (`id`, `id_training`, `id_exercises`, `type`) VALUES (NULL, '$id_training','$tab[$i]', 'PULL')";
             $query_run = mysqli_query($polaczenie, $query);
         }
     }

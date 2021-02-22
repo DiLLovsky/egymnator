@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
+  background: #060c21;
 }
 
 header {
@@ -21,16 +22,16 @@ header {
   font-size: 22px;
   font-weight: 900;
   color: #410873;
-  text-shadow: 0 0 3px #cfa900, 0 0 5px #cfa900;
+  text-shadow: 0 0 3px #fdb827, 0 0 5px #fdb827;
 }
 
 .left_area span {
-  color: #cfa900;
+  color: #fdb827;
 }
 
 .logout_btn {
   padding: 5px;
-  background: #cfa900;
+  background: #fdb827;
   text-decoration: none;
   float: right;
   margin-top: -35px;
@@ -59,7 +60,7 @@ header {
   position: fixed;
   left: 0;
   width: 250px;
-  height: calc(100% - 9%);
+  height: calc(100% - 8%);
   transition: 0.5s;
   transition-property: left;
   overflow-y: auto;
@@ -102,7 +103,7 @@ header {
 }
 
 .sidebar a:hover {
-  background: #cfa900;
+  background: #fdb827;
 }
 
 .sidebar i {
@@ -122,7 +123,7 @@ label #sidebar_btn {
 }
 
 label #sidebar_btn:hover {
-  color: #cfa900;
+  color: #fdb827;
 }
 
 #check:checked ~ .sidebar {
@@ -144,10 +145,6 @@ label #sidebar_btn:hover {
   margin-top: 60px;
   padding: 20px;
   margin-left: 250px;
-  background: #060c21;
-  background-position: center;
-  background-size: cover;
-  height: 110vh;
   transition: 0.5s;
 }
 
@@ -171,17 +168,24 @@ label #sidebar_btn:hover {
   background: #fff;
   width: 46%;
   float: left;
-  padding: 25px;
-  margin-bottom: 10px;
-  margin-left: 10px;
+  padding: 10px;
+  margin-left: 1%;
   font-size: 18px;
   opacity: 0.9;
   border-radius: 24px;
 }
 
 .content .card .info p {
-  width: 96%;
+  width: 95%;
   font-size: 22px;
+}
+
+@media screen and (max-width: 1280px) {
+  .content .card p {
+    background: #fff;
+    width: 44%;
+    float: left;
+  }
 }
 
 @media screen and (max-width: 780px) {
@@ -234,7 +238,7 @@ label #sidebar_btn:hover {
   }
 
   .nav_bar .nav_btn:hover {
-    color: #cfa900;
+    color: #fdb827;
   }
 
   .mobile_nav_items {
@@ -255,7 +259,7 @@ label #sidebar_btn:hover {
   }
 
   .mobile_nav_items a:hover {
-    background: #cfa900;
+    background: #fdb827;
   }
 
   .mobile_nav_items i {
@@ -264,6 +268,10 @@ label #sidebar_btn:hover {
 
   .active {
     display: block;
+  }
+
+  .content .card p {
+    width: 95%;
   }
 }
 
@@ -298,13 +306,13 @@ label #sidebar_btn:hover {
   text-transform: uppercase;
   font-size: 24px;
   font-weight: 900;
-  color: #cfa900;
+  color: #fdb827;
 }
 
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
   width: 50%;
-  border-color: #cfa900;
+  border-color: #fdb827;
 }
 
 .box input[type="submit"] {
@@ -323,7 +331,7 @@ label #sidebar_btn:hover {
 }
 
 .box input[type="submit"]:hover {
-  border-color: #cfa900;
+  border-color: #fdb827;
 }
 
 img {
@@ -334,6 +342,30 @@ img {
 }
 
 hr {
-  border: 3px solid #cfa900;
+  border: 3px solid #fdb827;
   border-radius: 5px;
+}
+
+.card button {
+  border: 0;
+  background: none;
+  display: block;
+  margin: auto;
+  text-align: center;
+  border: 3px solid #7a00aa;
+  padding: 14px 40px;
+  outline: none;
+  color: #7a00aa;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  width: 75%;
+  font-size: 24px;
+}
+
+.card button:hover {
+  border-color: #fdb827;
+  color: #fdb827;
 }

@@ -1,9 +1,7 @@
 <?php
 
-$polaczenie = mysqli_connect("localhost", "root", "");
-$db = mysqli_select_db($polaczenie, 'egymnator');
-?>
-<?php
+require_once "connect.php";
+$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
 session_start();
 
@@ -41,30 +39,88 @@ $tab_type = array();
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE = edge, chrome-1" />
     <meta name="viewport" content="width=device-width , initial-scale=1.0">
-    <title>E-Gymnator</title>
+    <title>E-Gymnator - Moje traningi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/styleprofile1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-
-    <style>
-        .card {
-            width: 70%;
-            margin-left: 15%;
-            margin-top: 20px;
-        }
-
-        div.dataTables_wrapper {
-            width: 1000px;
-            margin: 0 auto;
-        }
-    </style>
 </head>
+<style>
+    @media(max-width: 850px) {
+        .content {
+            width: calc(100%-3%);
+        }
+
+        .card-body {
+            margin: 0;
+            padding: 0;
+            padding-left: 2px;
+        }
+
+        thead {
+            width: 100%;
+        }
+
+        .table thead {
+            display: none;
+        }
+
+        .table thead h3 {
+            font-size: 15px;
+            font-weight: bold;
+            width: 100%;
+            display: block;
+        }
+
+        .table thead tr td {
+            width: 100%;
+        }
+
+        .table tbody {
+            width: 100%;
+            display: block;
+        }
+
+        .table {
+            width: 100%;
+        }
+
+        .table tr,
+        .table td {
+            display: block;
+            width: 100%;
+        }
+
+        .table td {
+            text-align: right;
+            padding-left: 0%;
+            text-align: right;
+            position: relative;
+        }
+
+        .table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 50%;
+            padding-left: 15px;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+    }
+
+    @media(max-width: 490px) {
+        .table td::before {
+            display: none;
+        }
+
+    }
+</style>
 
 <body>
     <?php include 'menu1.php'; ?>
@@ -78,9 +134,9 @@ $tab_type = array();
             $id_training = $rows['id_training'];
             $start_date = $rows['start_date'];
             array_push($tab_training, $id_training);
-            $lenght_train = count($tab_training);
+            $length_train = count($tab_training);
 
-            for ($i = 0; $i < $lenght_train; $i++) {
+            for ($i = 0; $i < $length_train; $i++) {
                 $exer = "SELECT * FROM training_exercises WHERE id_training = '$tab_training[$i]'";
                 $exer_run = mysqli_query($polaczenie, $exer);
                 while ($rowsexer = $exer_run->fetch_assoc()) {
@@ -99,12 +155,12 @@ $tab_type = array();
                     array_push($tab_id_exercises, $id_exercises);
                 }
             }
-            $lenght = count($tab);
+            $length = count($tab);
         ?>
 
-            <div class="card">
-                <div class="card-body">
-                    <table id="datatableid" class="table table-bordered table-dark display">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="datatableid" class="table table-bordered table-dark display table-striped">
                         <thead>
                             <tr>
                                 <td colspan="4">
@@ -120,7 +176,7 @@ $tab_type = array();
                                     </center>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="header">
                                 <th scope="col">Nazwa</th>
                                 <th scope="col">Część ciała</th>
                                 <th scope="col">Typ treningu</th>
@@ -129,12 +185,12 @@ $tab_type = array();
                         </thead>
                         <tbody>
                             <?php
-                            for ($j = 0; $j < $lenght; $j++) {        ?>
+                            for ($j = 0; $j < $length; $j++) {        ?>
                                 <tr>
-                                    <td> <?php echo $tab[$j]; ?></td>
-                                    <td> <?php echo $tab_body_part[$j]; ?></td>
-                                    <td> <?php echo $tab_type[$j]; ?></td>
-                                    <td>
+                                    <td data-label="Nazwa"> <?php echo $tab[$j]; ?></td>
+                                    <td data-label="Część ciała"> <?php echo $tab_body_part[$j]; ?></td>
+                                    <td data-label="Typ treningu"> <?php echo $tab_type[$j]; ?></td>
+                                    <td data-label="Edytuj">
                                         <form action="action_page.php" method="POST">
                                             <?php echo "<input type ='hidden' name='id' value='$tab_id[$j]' /> "; ?>
                                             <?php echo "<input type ='hidden' name='id_users' value='$id_users' /> "; ?>
@@ -160,6 +216,7 @@ $tab_type = array();
             $tab_type = array();
         } ?>
     </div>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('.nav_btn').click(function() {
@@ -169,11 +226,10 @@ $tab_type = array();
     </script>
     <script>
         $(document).ready(function() {
-
             $('.table').DataTable({
                 "lengthMenu": [
-                    [14, 25, 50, -1],
-                    [14, 25, 50, "All"]
+                    [16, 25, 50, -1],
+                    [16, 25, 50, "All"]
                 ],
                 "ordering": false,
                 responsive: true,

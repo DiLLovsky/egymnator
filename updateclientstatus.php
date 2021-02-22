@@ -1,7 +1,7 @@
 <?php
 session_start();
-$polaczenie = mysqli_connect("localhost", "root", "");
-$db = mysqli_select_db($polaczenie, 'egymnator');
+require_once "connect.php";
+$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
 if (isset($_POST['makeclient'])) {
     $id = $_POST['updateclient_id'];

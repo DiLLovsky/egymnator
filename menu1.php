@@ -30,7 +30,6 @@
         <a href="bmi.php"><i class="fas fa-weight"></i><span>Oblicz BMI i BMR</span></a>
         <a href="calendar.php"><i class="fas fa-calendar-alt"></i><span>Kalendarz</span></a>
         <a href="profile.php"><i class="far fa-user"></i><span>Edytuj profil</span></a>
-
     </div>
 </div>
 

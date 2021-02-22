@@ -81,7 +81,7 @@ if (isset($_POST['submit'])) {
         }
 
         hr {
-            border: 3px solid #cfa900;
+            border: 3px solid #fdb827;
             border-radius: 5px;
         }
 
@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
             width: 100%;
             font-size: 24px;
             border-radius: 50px;
-            background-color: #cfa900;
+            background-color: #fdb827;
         }
 
         .btn-primary:hover {

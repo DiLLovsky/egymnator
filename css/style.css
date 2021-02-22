@@ -46,18 +46,18 @@ body {
   font-size: 48px;
   font-weight: 900;
   color: #410873;
-  text-shadow: 0 0 8px #cfa900, 0 0 8px #cfa900;
+  text-shadow: 0 0 8px #fdb827, 0 0 8px #fdb827;
 }
 
 .box span {
-  color: #cfa900;
-  text-shadow: 0 0 5px #cfa900, 0 0 5px #cfa900;
+  color: #fdb827;
+  text-shadow: 0 0 5px #fdb827, 0 0 5px #fdb827;
 }
 
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
   width: 300px;
-  border-color: #cfa900;
+  border-color: #fdb827;
 }
 
 .box input[type="submit"] {
@@ -76,7 +76,7 @@ body {
 }
 
 .box input[type="submit"]:hover {
-  border-color: #cfa900;
+  border-color: #fdb827;
 }
 
 .label {
@@ -84,12 +84,13 @@ body {
   margin-left: 25%;
 }
 .g-recaptcha {
-  margin: 10px;
-  margin-left: 60px;
+  margin: 20px;
+  margin-left: 15%;
 }
 .checkmark {
   height: 15px;
   width: 15px;
+  margin-top: 7px;
 }
 .reg {
   display: flex;
@@ -105,7 +106,7 @@ p {
 a {
   font-size: large;
   font-weight: 500;
-  color: #cfa900;
+  color: #fdb827;
   text-decoration: none;
 }
 a:hover {

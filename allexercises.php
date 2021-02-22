@@ -32,20 +32,94 @@ $image_src = "upload/" . $image;
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE = edge, chrome-1" />
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
     <title> E-Gymnator - Ćwiczenia </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="css/styleprofile.css">
+    <link rel="stylesheet" href="css/styleprofile1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
 </head>
+<style>
+    @media(max-width: 1065px) {
+        .content {
+            width: calc(100%-3%);
+        }
+
+        .card-body {
+            margin: 0;
+            padding: 0;
+            padding-left: 2px;
+        }
+
+        thead {
+            width: 100%;
+        }
+
+        .table thead {
+            display: none;
+        }
+
+        .table thead h3 {
+            font-size: 15px;
+            font-weight: bold;
+            width: 100%;
+            display: block;
+        }
+
+        .table thead tr td {
+            width: 100%;
+        }
+
+        .table tbody {
+            width: 100%;
+            display: block;
+        }
+
+        .table {
+            width: 100%;
+        }
+
+        .table tr,
+        .table td {
+            display: block;
+            width: 100%;
+        }
+
+        .table td {
+            text-align: right;
+            padding-left: 0%;
+            text-align: right;
+            position: relative;
+        }
+
+        .table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 50%;
+            padding-left: 15px;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+    }
+
+    @media(max-width: 490px) {
+        .table td::before {
+            display: none;
+        }
+
+    }
+</style>
 
 <body>
     <?php include 'menu1.php'; ?>
     <div class="content">
-        <div class="card">
-            <div class="card-body">
+        <div class="card-body">
+            <div class="table-responsive">
                 <table id="datatableid" class="table table-bordered table-dark display">
                     <thead>
                         <tr>
@@ -67,12 +141,12 @@ $image_src = "upload/" . $image;
                             foreach ($query_run as $row) {
                         ?>
                                 <tr>
-                                    <td> <?php echo $row['id_exercises']; ?></td>
-                                    <td> <?php echo $row['name']; ?></td>
-                                    <td> <?php echo $row['body_part']; ?></td>
-                                    <td> <?php echo $row['difficulty']; ?></td>
-                                    <td> <?php echo $row['exercise_type']; ?></td>
-                                    <td> <?php echo $row['exercise_weights']; ?></td>
+                                    <td data-label="#"> <?php echo $row['id_exercises']; ?></td>
+                                    <td data-label="Nazwa"> <?php echo $row['name']; ?></td>
+                                    <td data-label="Część ciała"> <?php echo $row['body_part']; ?></td>
+                                    <td data-label="Poziom trudności"> <?php echo $row['difficulty']; ?></td>
+                                    <td data-label="Typ ćwiczenia"> <?php echo $row['exercise_type']; ?></td>
+                                    <td data-label="Typ obciążenia"> <?php echo $row['exercise_weights']; ?></td>
                                 </tr>
                         <?php
                             }
@@ -197,7 +271,7 @@ $image_src = "upload/" . $image;
             $('#datatableid').DataTable({
                 "lengthMenu": [
                     [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
+                    [10, 25, 50, "Wszystkie"]
                 ],
                 responsive: true,
                 language: {
